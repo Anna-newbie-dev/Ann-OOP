@@ -17,6 +17,7 @@ namespace LaunchLab
         /// <param name="args">Arguments</param>
         static void Main(string[] args)
         {
+            Console.SetWindowSize(150, 30);
             Console.WriteLine("Press any key to create lists ");
             Console.ReadKey();
             Console.WriteLine("\nCreating lists... ");
@@ -52,7 +53,7 @@ namespace LaunchLab
                         break;
                     }
             }
-            Console.ReadKey();     
+            Console.ReadKey();
         }
 
         /// <summary>
@@ -64,61 +65,6 @@ namespace LaunchLab
                 return " her";
             else
                 return " him";
-        }
-
-        /// <summary>
-        /// Displays two lists on the screen
-        /// </summary>
-        /// <param name="firstList">Первый список</param>
-        /// <param name="secondList">Второй список</param>
-        static void PrintLists(PersonList firstList,
-            PersonList secondList)
-        {
-            var personLists = new PersonList[]
-            {
-                firstList,
-                secondList
-            };
-
-            for (int i = 0; i < personLists.Length; i++)
-            {
-                Console.WriteLine("Список " + (i + 1) + "\n");
-                Console.WriteLine("   Name      Surname     Age      Gender");
-                for (int j = 0; j < personLists[i].Length; j++)
-                {
-                    Console.WriteLine("{0,10} | {1,10} | {2,3} | {3,7}",
-                        personLists[i][j].FirstName, personLists[i][j].LastName,
-                        personLists[i][j].Age, personLists[i][j].Gender);
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine("----------\n");
-        }
-
-        /// <summary>
-        /// Displays a list on the screen
-        /// </summary>
-        /// <param name="personList">A list to be displayed</param>
-        static void PrintLists(PersonList personList)
-        {
-            var personLists = new PersonList[]
-            {
-                personList,
-            };
-
-            for (int i = 0; i < personLists.Length; i++)
-            {
-                //Console.WriteLine("Список " + (i + 1) + "\n");
-
-                for (int j = 0; j < personLists[i].Length; j++)
-                {
-                    Console.WriteLine(
-                        personLists[i][j].FirstName + "\t" + personLists[i][j].LastName +
-                        "\t" + personLists[i][j].Age + "\t" + personLists[i][j].Gender);
-                    Console.WriteLine();
-                }
-            }
-            Console.WriteLine("----------\n");
         }
 
     } 
