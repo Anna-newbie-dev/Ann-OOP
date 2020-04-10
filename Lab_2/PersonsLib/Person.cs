@@ -43,7 +43,6 @@ namespace PersonsLib
             set
             {
                 CheckInput(value);
-               // _firstName = value;
                 _firstName = FirstLetterUpperCase(value);
             }
         }
@@ -124,7 +123,7 @@ namespace PersonsLib
         /// </summary>
         /// <param name="input">Param to check</param>
         /// <returns>Whether it matches or not </returns>
-        private static bool IsNameCorrect(string input)
+        public static bool IsNameCorrect(string input)
         {
            if (input.All(c => Char.IsLetter(c) || c == '-'))
             {
@@ -140,7 +139,7 @@ namespace PersonsLib
         /// Checks if name/surname input is correct
         /// </summary>
         /// <param name="value">Param to check</param>
-        private void CheckInput(string value)
+        public virtual void CheckInput(string value)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -160,7 +159,7 @@ namespace PersonsLib
         /// </summary>
         /// <param name="wordToUpdate">Input string</param>
         /// <returns>Edited string</returns>
-        private static string FirstLetterUpperCase(string wordToUpdate)
+        public string FirstLetterUpperCase(string wordToUpdate)
         {
             string[] buffer = wordToUpdate.Split('-');
             wordToUpdate = null;
@@ -182,9 +181,10 @@ namespace PersonsLib
         /// <returns>A string containing info</returns>
         public virtual string FormInfoAboutPerson()
         {
-            return $"{FirstName}\t" +
+            return 
+                $"{FirstName}\t" +
                 $"{LastName}\t" +
-                $" {Age}\t" + 
+                $"{Age}\t" + 
                 $"{Gender}\t";
         }
 
