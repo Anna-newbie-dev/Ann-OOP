@@ -164,41 +164,41 @@ namespace PersonsLib
             var infoAboutPerson = base.FormInfoAboutPerson() +
                 $"{KindergartenOrSchool}\t";
 
-            if (MotherName != null)
-            {
-                infoAboutPerson += $" {MotherName}\t";
-            }
-            else
+            if (string.IsNullOrEmpty(MotherName))
             {
                 infoAboutPerson += "None\t";
             }
+            else
+            {
+                infoAboutPerson += $"{MotherName}\t";
+            }
                 
-            if (MotherSurname != null)
+            if (string.IsNullOrEmpty(MotherSurname))
+            {
+                infoAboutPerson += "None\t";
+            }
+            else
             {
                 infoAboutPerson += $"{MotherSurname}\t";
             }
-            else
+
+            if (string.IsNullOrEmpty(FatherName))
             {
                 infoAboutPerson += "None\t";
             }
-            if (FatherName != null)
+            else
             {
                 infoAboutPerson += $"{FatherName}\t";
             }
-            else
-            {
-                infoAboutPerson += "  None  ";
-            }
 
-            if (FatherSurname != null)
-            {
-                infoAboutPerson += $"{FatherSurname}\t";
-            }
-            else
+            if (string.IsNullOrEmpty(FatherSurname))
             {
                 infoAboutPerson += "None\t";
             }
-
+            else
+            {
+                infoAboutPerson += $"{FatherSurname}\t";
+            }
             PrintChildHeader();
             return infoAboutPerson;
         }
@@ -206,15 +206,15 @@ namespace PersonsLib
         /// Prints header before
         /// data is displayed
         /// </summary>
-        static void PrintChildHeader()
+        public void PrintChildHeader()
         {
             Console.WriteLine("Name\tSurname\tAge\tGender\t" +
-                "Kindergarten/School\tMother's name\tMother's surname" +
-                "\tFather's name\tFather's surname");
+                "Kindergarten/School\tMother's name\tMother's surname\t" +
+                "Father's name\tFather's surname");
         }
 
         /// <summary>
-        /// To play music
+        /// To play a beep song
         /// </summary>
         public void Beep()
         {
@@ -222,12 +222,12 @@ namespace PersonsLib
             Console.WriteLine($"{WhoIs()} tries to play Metallica ;-)");   
             
             Console.Beep(329, 250); //E
-            Console.Beep(493, 300); //B
+            Console.Beep(400, 300); //B
             Console.Beep(698, 250); //F^
             Console.Beep(659, 500); //E^
 
             Console.Beep(780, 300); //G^
-            Console.Beep(698, 300); //F^
+            Console.Beep(620, 300); //F^
             Console.Beep(650, 500); //E^
 
             Console.Beep(329, 100);
@@ -236,7 +236,7 @@ namespace PersonsLib
             Console.Beep(659, 600);
 
             Console.Beep(392, 250);
-            Console.Beep(440, 200);
+            Console.Beep(300, 200);
             Console.Beep(587, 300);
 
             Console.Beep(349, 250);
@@ -244,7 +244,7 @@ namespace PersonsLib
 
             Console.Beep(329, 250);
             Console.Beep(493, 300);
-            Console.Beep(698, 300);
+            Console.Beep(700, 300);
             Console.Beep(659, 600);
         }
 

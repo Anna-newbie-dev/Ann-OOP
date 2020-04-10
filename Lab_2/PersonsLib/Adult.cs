@@ -25,7 +25,7 @@ namespace PersonsLib
         /// <summary>
         /// Allowed number od digits in ID
         /// </summary>
-        public const int IDNUMALLOWED = 10;
+        public const int IDNUMALLOWED = 5;
 
         #endregion
 
@@ -106,7 +106,12 @@ namespace PersonsLib
         public string PartnerName
         {
             get { return _partnerName; }
-            set { _partnerName = value; }
+            set
+            {
+                _partnerName = value;
+                _partnerName = CheckStatusesAndNames(value,
+                    MaritalStatus);
+            }
         }
 
         /// <summary>
@@ -115,7 +120,12 @@ namespace PersonsLib
         public string PartnerSurname
         {
             get { return _partnerSurname; }
-            set { _partnerSurname = value; }
+            set 
+            {
+                _partnerSurname = value;
+                _partnerSurname = CheckStatusesAndNames(value,
+                    MaritalStatus); 
+            }
         }
 
         /// <summary>
@@ -164,15 +174,15 @@ namespace PersonsLib
         /// exceeds allowed size
         /// </summary>
         /// <param name="value">ID</param>
-        /// <param name="digitsAmount">Number of digits in ID</param>
+        /// <param name="digitsAllowed">Number of digits in ID</param>
         private void CheckID(string value,
-            byte digitsAmount)
+            byte digitsAllowed)
         {
-            if (value.Length != digitsAmount)
+            if (value.Length != digitsAllowed)
             {
                 throw new ArgumentException(
-                    $"{nameof(value)} must contain exactly " + digitsAmount +
-                        "digits!");
+                    $"{nameof(value)} must contain exactly " + 
+                    digitsAllowed +" digits!");
             }
 
             if (!Int64.TryParse(value, out _))
@@ -181,37 +191,49 @@ namespace PersonsLib
                     $"{nameof(value)} must be numeric!");
             }
         }
-        
+
         /// <summary>
-        /// Сформировать информацию о взрослом
+        /// Handler
         /// </summary>
-        /// <returns>Информация о взрослом</returns>
-        //public override string FormInfoAboutPerson()
-        //{
-        //    var infoAboutPerson = base.FormInfoAboutPerson() +
-        //        $"\nDocument " +
-        //        $"{ID}\n" +
-        //        $"Семейное положение: {MaritalStatus}";
+        /// <returns></returns>
+        public string CheckStatusesAndNames(string name, Status status)
+        {
+            if (status == Status.Married)
+            {
+                CheckInput(name);
+                return FirstLetterUpperCase(name);
+            }
+            if (status != Status.Married)
+            {
+                return name = "None";
+            }
+            else
+            {
+                throw new ArgumentException(
+                        "Unknown error!");
+            }
+        }
 
-        //    if (MaritalStatus == Status.Married)
-        //    {
-        //        infoAboutPerson += $"\nПартнер: {Partner.FirstName} " +
-        //            $"{Partner.LastName}";
-        //    }
-
-        //    infoAboutPerson += "\nМесто работы: ";
-
-        //    if (string.IsNullOrEmpty(WorkPlace))
-        //    {
-        //        infoAboutPerson += "Безработный";
-        //    }
-        //    else
-        //    {
-        //        infoAboutPerson += WorkPlace;
-        //    }
-
-        //    return infoAboutPerson;
-        //}
+        /// <summary>
+        /// Checks if partner's name/surname 
+        /// of married Adult is correct
+        /// </summary>
+        /// <param name="value">Param to check</param>
+        public override void CheckInput(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException(
+                    "This person is married. Partner's name and surname" +
+                    " are required!");
+            }
+            if (!IsNameCorrect(value))
+            {
+                throw new FormatException(
+                   "The input parameter must contain Cyrillic or " +
+                   "Latin symbols only.");
+            }
+        }
 
         /// <summary>
         /// Сформировать информацию о взрослом
@@ -225,7 +247,13 @@ namespace PersonsLib
            
             if (MaritalStatus != Status.Married)
             {
-                infoAboutPerson += "None\t";
+                infoAboutPerson += "None\tNone\t";
+            }
+            else 
+            {
+                infoAboutPerson += $"{PartnerName}\t" +
+                    $"{PartnerSurname}\t";
+
             }
             
             if (string.IsNullOrEmpty(WorkPlace))
@@ -239,6 +267,7 @@ namespace PersonsLib
             PrintAdultHeader();
             return infoAboutPerson;
         }
+
         /// <summary>
         /// Prints header before
         /// data is displayed
@@ -250,56 +279,53 @@ namespace PersonsLib
         }
 
         /// <summary>
-        /// To play 
+        /// To play a beep song
         /// </summary>
         public void Beep()
         {
             Console.WriteLine($"{WhoIs()} is playing...");
-            for (int i = 1; i < 2; i++)
-            {
-                Console.Beep(329, 280); 
-                Console.Beep(493, 280); 
-                Console.Beep(698, 280); 
-                Console.Beep(659, 550); 
 
-                Console.Beep(783, 280); 
-                Console.Beep(698, 280); 
-                Console.Beep(659, 550); 
+            Console.Beep(329, 280);
+            Console.Beep(493, 280); 
+            Console.Beep(698, 280); 
+            Console.Beep(659, 550); 
 
-                Console.Beep(329, 100);
-                Console.Beep(493, 300);
-                Console.Beep(698, 300);
-                Console.Beep(659, 600);
+            Console.Beep(783, 280); 
+            Console.Beep(698, 280); 
+            Console.Beep(659, 550); 
 
-                Console.Beep(392, 250);
-                Console.Beep(440, 200);
-                Console.Beep(587, 300);
+            Console.Beep(329, 100);
+            Console.Beep(493, 300);
+            Console.Beep(698, 300);
+            Console.Beep(659, 600);
 
-                Console.Beep(349, 250);
-                Console.Beep(587, 500);
+            Console.Beep(392, 250);
+            Console.Beep(440, 200);
+            Console.Beep(587, 300);
 
-                Console.Beep(329, 300);
-                Console.Beep(493, 300);
-                Console.Beep(698, 300);
-                Console.Beep(659, 600);
+            Console.Beep(349, 250);
+            Console.Beep(587, 500);
 
-                Console.Beep(783, 300);
-                Console.Beep(698, 300);
-                Console.Beep(659, 600);
+            Console.Beep(329, 300);
+            Console.Beep(493, 300);
+            Console.Beep(698, 300);
+            Console.Beep(659, 600);
 
-                Console.Beep(329, 100);
-                Console.Beep(493, 300);
-                Console.Beep(698, 300);
-                Console.Beep(659, 600);
+            Console.Beep(783, 300);
+            Console.Beep(698, 300);
+            Console.Beep(659, 600);
 
-                Console.Beep(392, 250);
-                Console.Beep(440, 200);
-                Console.Beep(587, 300);
+            Console.Beep(329, 100);
+            Console.Beep(493, 300);
+            Console.Beep(698, 300);
+            Console.Beep(659, 600);
 
-                Console.Beep(349, 250);
-                Console.Beep(587, 400);
+            Console.Beep(392, 250);
+            Console.Beep(440, 200);
+            Console.Beep(587, 300);
 
-            }
+            Console.Beep(349, 250);
+            Console.Beep(587, 400);
         }
         #endregion
     }
