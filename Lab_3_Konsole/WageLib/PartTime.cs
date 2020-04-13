@@ -8,12 +8,12 @@ namespace WageLib
     {
         #region Fields
         /// <summary>
-        /// ...
+        /// Отработанные часы
         /// </summary>
         private int _shifts;
 
         /// <summary>
-        /// ...
+        /// Стоимость часа
         /// </summary>
         private double _salary;
 
@@ -22,7 +22,7 @@ namespace WageLib
         #region Properties
 
         /// <summary>
-        /// Смены/часы
+        /// Отработанные часы
         /// </summary>
         public int Shifts
         {
@@ -59,6 +59,7 @@ namespace WageLib
         {
             return Shifts * Salary;
         }
+		
         #endregion
     }
 }

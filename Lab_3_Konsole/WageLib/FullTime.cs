@@ -8,17 +8,17 @@ namespace WageLib
     {
         #region Fields
         /// <summary>
-        /// ...
+        /// Отработанные часы
         /// </summary>
         private int _shifts;
 
         /// <summary>
-        /// ...
+        /// Оклад
         /// </summary>
         private double _salary;
 
         /// <summary>
-        /// ...
+        /// Ставка
         /// </summary>
         private double _rate;
 
@@ -27,7 +27,7 @@ namespace WageLib
         #region Properties
 
         /// <summary>
-        /// ...
+        /// Отработанные часы
         /// </summary>
         public int Shifts
         {
@@ -40,7 +40,7 @@ namespace WageLib
         }
 
         /// <summary>
-        /// ...
+        /// Оклад
         /// </summary>
         public double Salary
         {
@@ -52,7 +52,7 @@ namespace WageLib
         }
 
         /// <summary>
-        /// ...
+        /// Ставка
         /// </summary>
         public double Rate
         {
@@ -65,6 +65,10 @@ namespace WageLib
         #endregion
 
         #region Methods
+
+	/// <summary>
+	/// Calculates wage
+	/// </summary>
         public double CalculateWage()
         {
             return Shifts * Rate + Salary;
