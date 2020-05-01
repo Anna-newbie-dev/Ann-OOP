@@ -320,19 +320,11 @@ namespace LaunchLab
                     action.Invoke();
                     return;
                 }
-                ///TODO объединить в один метод
+                ///TODO: объединить в один catch
                 catch (Exception e)
                 {
-                    if (e is ArgumentException)
-                    {
-                        TryAgain();
-                    }
-
-                    else if (e is FormatException)
-                    {
-                        TryAgain();
-                    }
-                    else if (e is InvalidOperationException)
+                    if (e is ArgumentException || e is FormatException
+                        || e is InvalidOperationException)
                     {
                         TryAgain();
                     }
