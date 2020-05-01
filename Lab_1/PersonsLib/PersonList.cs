@@ -125,9 +125,10 @@ namespace PersonsLib
         /// <param name="person">Person class instance</param>
         public void DeletePerson(Person person)
         {
-            DeletePersonByIndex(GetPerson(person));
+            DeletePersonByIndex(GetPersonByIndex(person));
         }
 
+        //TODO: Переименоваь
         /// <summary>
         /// Поиск человека в списке по переданному
         /// экземпляру объекта класса Person
@@ -136,7 +137,7 @@ namespace PersonsLib
         /// <returns>
         /// Индекс человека в списке
         /// </returns>
-        public int GetPerson(Person person)
+        public int GetPersonByIndex(Person person)
         {
             for (int i = 0; i < _persons.Length; i++)
             {

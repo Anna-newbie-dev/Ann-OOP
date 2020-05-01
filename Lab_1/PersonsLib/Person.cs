@@ -43,6 +43,7 @@ namespace PersonsLib
             set
             {
                 CheckInput(value);
+                //TODO: Убрать комментарии
                // _firstName = value;
                 _firstName = FirstLetterUpperCase(value);
             }
@@ -57,7 +58,8 @@ namespace PersonsLib
             set
             {
                 CheckInput(value);
-               // _lastName = value;
+                //TODO: Убрать комментарии
+                // _lastName = value;
                 _lastName = FirstLetterUpperCase(value);
             }
         }

@@ -5,17 +5,17 @@ using System.Text;
 using PersonsLib;
 
 namespace LaunchLab
-{
+{   /// TODO:access modifiers
     /// <summary>
     /// Main program class
     /// </summary>
-    class Program
+    public class Program
     {
         /// <summary>
         /// Main program
         /// </summary>
         /// <param name="args">Arguments</param>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Press any key to create lists ");
             Console.ReadKey();
@@ -26,7 +26,7 @@ namespace LaunchLab
 
             var firstList = new Person[]
             {
-                new Person("Зohn", "Do-e", 45, Gender.Male),
+                new Person("John", "Do-e", 45, Gender.Male),
                 new Person("Billy", "Herrington", 48, Gender.Male),
                 new Person("Lisa", "Su", 50, Gender.Female),
             };
@@ -63,6 +63,10 @@ namespace LaunchLab
                         Console.WriteLine("Press Y to show list, any key " +
                             "to go back to the menu.");
                         char key = Console.ReadKey().KeyChar;
+
+                        // При нажатии клавиши Y
+                        // выведет список независимо
+                        // от используемой в данный момент раскладки
                         if (key == 'y' || key == 'н')
                         {
                             PrintLists(listOne);
@@ -71,7 +75,8 @@ namespace LaunchLab
                     case 2:
                         Console.WriteLine("Which index whould you like " +
                             "to copy?");
-                        listTwo.AddPerson(ExceptionHandler(firstList));
+                        listTwo.AddPerson(listOne[IndexExceptionHandler
+                            (listOne)]);
                         SuccessfulMethod();
                         PrintLists(listOne, listTwo);
                         break;
@@ -79,7 +84,7 @@ namespace LaunchLab
                         Console.WriteLine("Which index whould you like "
                         + " to delete?");
                         listOne.DeletePersonByIndex(IndexExceptionHandler
-                            (firstList));
+                            (listOne));
                         SuccessfulMethod();
                         PrintLists(listOne, listTwo);
                         break;
@@ -106,6 +111,7 @@ namespace LaunchLab
                 }
             }
         }
+
         /// <summary>
         /// Displays two lists on the screen
         /// </summary>
@@ -148,8 +154,6 @@ namespace LaunchLab
 
             for (int i = 0; i < personLists.Length; i++)
             {
-                //Console.WriteLine("Список " + (i + 1) + "\n");
-
                 for (int j = 0; j < personLists[i].Length; j++)
                 {
                     Console.WriteLine(
@@ -192,8 +196,7 @@ namespace LaunchLab
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("You've entered a wrong format!" +
-                        " Please, enter once more.");
+                    WrongFormatMessage();
                 }
             }
         }
@@ -203,36 +206,12 @@ namespace LaunchLab
         /// ExceptionHandler
         /// <param name="list">Array</param>
         /// <returns></returns>
-        static Person ExceptionHandler(Person[] list)
-        {
-            int option = 0;
-            while (true)
-            {
-                try
-                {
-                    option = int.Parse(Console.ReadLine());
-                    return list[option - 1];
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You've entered a wrong format!" +
-                        " Please, enter once more..");
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    Console.WriteLine("Index doesnt't exist. Please, " +
-                        "enter once more.");
-                }
-            }
-
-            return null;
-        }
 
         /// <summary>
         /// Handles OutOfRangeException
         /// <param name="list">Array</param>
         /// <returns>Index</returns>
-        static int IndexExceptionHandler(Person[] list)
+        static int IndexExceptionHandler(PersonList list)
         {
             int option = 0;
             while (true)
@@ -245,8 +224,7 @@ namespace LaunchLab
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("You've entered a wrong format!" +
-                        " Please, enter once more.");
+                    WrongFormatMessage();
                 }
                 catch (IndexOutOfRangeException)
                 {
@@ -342,20 +320,36 @@ namespace LaunchLab
                     action.Invoke();
                     return;
                 }
-                catch (ArgumentException)
+                ///TODO объединить в один метод
+                catch (Exception e)
                 {
-                    TryAgain();
-                }
-                catch (FormatException)
-                {
-                    TryAgain();
-                }
-                catch (InvalidOperationException)
-                {
-                    TryAgain();
+                    if (e is ArgumentException)
+                    {
+                        TryAgain();
+                    }
+
+                    else if (e is FormatException)
+                    {
+                        TryAgain();
+                    }
+                    else if (e is InvalidOperationException)
+                    {
+                        TryAgain();
+                    }
                 }
             }
         }
+
+        /// <summary>
+        /// Displays a message
+        /// to try input again
+        /// </summary>
+        private static void WrongFormatMessage()
+        {
+            Console.WriteLine("You've entered a wrong format!" +
+                        " Please, enter once more.");
+        }
+
     }
 }
 

@@ -5,9 +5,11 @@ using System.Text;
 using PersonsLib;
 
 namespace LaunchLab
-{
+
+{   ///TODO: Comment this class
     /// <summary>
-    /// RandomPerson class
+    /// Источник персон
+    /// для выбора произвольного экземпляра
     /// </summary>
     public static class RandomPerson
     {
