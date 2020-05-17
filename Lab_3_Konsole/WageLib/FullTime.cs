@@ -8,6 +8,14 @@ namespace WageLib
     /// </summary>
     public class FullTime : IWage
     {
+        #region Constants
+
+        public int MAXSHIFTS = 8600;
+        public int MAXSALARY = 25000;
+        public int MAXRATE = 15000;
+
+        #endregion
+
         #region Fields
         /// <summary>
         /// Отработанные часы
@@ -34,11 +42,8 @@ namespace WageLib
         public double Shifts
         {
             get => _shifts;
-            set => _shifts = (value < 0) ? throw new
-                ArgumentOutOfRangeException("Число отработанных часов" +
-                " из производственного календаря" +
-                " не может быть отрицательным!")
-                : _shifts = value;
+            set =>
+                _shifts = AutoPropertyCheck(value, MAXSHIFTS);
         }
 
         /// <summary>
@@ -47,10 +52,8 @@ namespace WageLib
         public double Salary
         {
             get => _salary;
-            set => _salary = (value < 0) ? throw new
-                ArgumentOutOfRangeException("Оклад не может быть" +
-                " отрицательным!") :
-                _salary = value;
+            set =>
+                _salary = AutoPropertyCheck(value, MAXSALARY);
         }
 
         /// <summary>
@@ -59,10 +62,7 @@ namespace WageLib
         public double Rate
         {
             get => _rate;
-            set => _rate = (value < 0) ? throw new
-                ArgumentOutOfRangeException("Ставка не может быть" +
-                " отрицательной!") :
-                _rate = value;
+            set => _rate = AutoPropertyCheck(value, MAXRATE);
         }
         #endregion
 
@@ -74,6 +74,30 @@ namespace WageLib
         public double CalculateWage()
         {
             return Shifts * Rate + Salary;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param">value to check</param>
+        /// <param name="constant">constant value
+        /// to compare with</param>
+        /// <returns>Checked property</returns>
+        public double AutoPropertyCheck(double param, int constant)
+        {
+            if (param < 0)
+            {
+                throw new ArgumentOutOfRangeException
+                    ("Параметр не может быть отрицательным!");
+            }
+            else if (param > constant)
+            {
+                throw new ArgumentOutOfRangeException
+                    ("Параметр" +
+                    $" не может превышать {constant}");
+            }
+            else
+                return param;
         }
 
         #endregion

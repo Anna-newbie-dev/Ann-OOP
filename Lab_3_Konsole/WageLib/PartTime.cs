@@ -8,6 +8,13 @@ namespace WageLib
     /// </summary>
     public class PartTime : IWage
     {
+        #region Constants
+
+        public int MAXSHIFTS = 500;
+        public int MAXSALARY = 3500;
+
+        #endregion
+
         #region Fields
         /// <summary>
         /// Отработанные часы
@@ -29,10 +36,7 @@ namespace WageLib
         public double Shifts
         {
             get => _shifts;
-            set => _shifts = (value < 0) ? throw new
-                ArgumentOutOfRangeException("Число отработанных часов" +
-                " не может быть отрицательным!")
-                : _shifts = value;
+            set => _shifts = AutoPropertyCheck(value, MAXSHIFTS);
 
         }
 
@@ -42,10 +46,7 @@ namespace WageLib
         public double Salary
         {
             get => _salary;
-            set => _salary = (value < 0) ? throw new
-                ArgumentOutOfRangeException("Стоимость часа не может быть" +
-                " отрицательной!") :
-                _salary = value;
+            set => _salary = AutoPropertyCheck(value, MAXSALARY);
         }
 
         #endregion
@@ -60,6 +61,30 @@ namespace WageLib
         public double CalculateWage()
         {
             return Shifts * Salary;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param">value to check</param>
+        /// <param name="constant">constant value
+        /// to compare with</param>
+        /// <returns>Checked property</returns>
+        public double AutoPropertyCheck(double param, int constant)
+        {
+            if (param < 0)
+            {
+                throw new ArgumentOutOfRangeException
+                    ("Параметр не может быть отрицательным!");
+            }
+            else if (param > constant)
+            {
+                throw new ArgumentOutOfRangeException
+                    ("Параметр" +
+                    $" не может превышать {constant}");
+            }
+            else
+                return param;
         }
 
         #endregion

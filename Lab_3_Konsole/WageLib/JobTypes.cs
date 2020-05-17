@@ -4,6 +4,7 @@ using System.Text;
 
 namespace WageLib
 {
+    //TODO: XML
     public enum JobTypes
     {
        PartTime,

@@ -1,5 +1,9 @@
 ﻿namespace WageLib
 {
+    /// <summary>
+    /// Интерфейс, реализующий
+    /// расчет заработной платы
+    /// </summary>
     public interface IWage
     {
         #region Properties
@@ -22,6 +26,7 @@
         /// Calculates wage
         /// </summary>
         double CalculateWage();
+        double AutoPropertyCheck(double param, int constant);
 
         #endregion
     }

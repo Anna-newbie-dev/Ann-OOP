@@ -26,9 +26,11 @@ namespace Lab_3
                         PartTime partTime = new PartTime();
                         Console.Write("Введите отработанное количество" +
                             " часов: ");
-                        partTime.Shifts = ExceptionHandler();
+                        partTime.Shifts = ExceptionHandler
+                            (partTime.MAXSHIFTS);
                         Console.Write("Стоимость часа: ");
-                        partTime.Salary = ExceptionHandler();
+                        partTime.Salary = ExceptionHandler
+                            (partTime.MAXSALARY);
                         Console.WriteLine("Получилось: {0}",
                             partTime.CalculateWage());
                         break;
@@ -36,11 +38,14 @@ namespace Lab_3
                         FullTime fullTime = new FullTime();
                         Console.Write("Введите отработанное количество" +
                             " часов из производственного календаря: ");
-                        fullTime.Shifts = ExceptionHandler();
+                        fullTime.Shifts = ExceptionHandler
+                            (fullTime.MAXSHIFTS);
                         Console.Write("Оклад: ");
-                        fullTime.Salary = ExceptionHandler();
+                        fullTime.Salary = ExceptionHandler
+                            (fullTime.MAXSALARY);
                         Console.Write("Cтавка: ");
-                        fullTime.Rate = ExceptionHandler();
+                        fullTime.Rate = ExceptionHandler
+                            (fullTime.MAXRATE);
                         Console.WriteLine("Получилось: {0}",
                             fullTime.CalculateWage());
                         break;
@@ -60,8 +65,8 @@ namespace Lab_3
         /// Проверка на корректность ввода
         /// </summary>
         /// <param name="input">строка для проверки</param>
-        /// <returns>число</returns>
-        static double ExceptionHandler()
+        /// <returns>Число</returns>
+        static double ExceptionHandler(int constant)
         {
             var temp = 0.0;
             while (true)
@@ -70,14 +75,15 @@ namespace Lab_3
                 {
                     temp = Math.Round(double.Parse(Console.ReadLine().
                         Replace('.', ',')));
-                    if (temp >= 0)
+                    if (temp >= 0 & temp <= constant)
                     {
                         return temp;
                     }
                     else
                     {
-                        Console.WriteLine("Кажется, Вы ввели " +
-                            "отрицательное число. Повторите ввод.");  
+                        Console.WriteLine("Кажется, Вы вышли " +
+                            "за границы допустимого диапазона. " +
+                            "Повторите ввод.");  
                     }
                 }
 
@@ -88,5 +94,6 @@ namespace Lab_3
                 }
             }
         }
+
     }
 }
