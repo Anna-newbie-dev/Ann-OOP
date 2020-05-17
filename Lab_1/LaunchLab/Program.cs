@@ -62,7 +62,7 @@ namespace LaunchLab
                         Console.WriteLine("Successful!");
                         Console.WriteLine("Press Y to show list, any key " +
                             "to go back to the menu.");
-                        char key = Console.ReadKey().KeyChar;
+                        char key = Char.ToLower(Console.ReadKey().KeyChar);
 
                         // При нажатии клавиши Y
                         // выведет список независимо
@@ -200,12 +200,6 @@ namespace LaunchLab
                 }
             }
         }
-
-        /// <summary>
-        /// The overloaded
-        /// ExceptionHandler
-        /// <param name="list">Array</param>
-        /// <returns></returns>
 
         /// <summary>
         /// Handles OutOfRangeException
