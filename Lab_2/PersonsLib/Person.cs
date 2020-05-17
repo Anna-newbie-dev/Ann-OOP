@@ -56,7 +56,6 @@ namespace PersonsLib
             set
             {
                 CheckInput(value);
-               // _lastName = value;
                 _lastName = FirstLetterUpperCase(value);
             }
         }
@@ -125,14 +124,7 @@ namespace PersonsLib
         /// <returns>Whether it matches or not </returns>
         public static bool IsNameCorrect(string input)
         {
-           if (input.All(c => Char.IsLetter(c) || c == '-'))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return input.All(c => Char.IsLetter(c) || c == '-');
         }
        
         /// <summary>

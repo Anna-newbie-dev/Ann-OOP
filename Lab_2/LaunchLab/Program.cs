@@ -9,7 +9,7 @@ namespace LaunchLab
     /// <summary>
     /// Main program class
     /// </summary>
-    class Program
+    static class Program
     {
         /// <summary>
         /// Main program
@@ -36,18 +36,24 @@ namespace LaunchLab
             }
 
             Console.Write("And fourth entry is ");
+            //TODO: Добавить метод специфичный для типа (!)
             switch (listOne[3])
             {
                 case Adult adult:
                     {
-                        Console.WriteLine("an adult!");
+                        Console.WriteLine("an adult!" +
+                            $"{adult.WhoIs()}  works in" +
+                            $"{adult.WorkPlace}");
                         adult.Beep();
                         break;
                     }
                 case Child child:
                     {
-                        Console.WriteLine("a child!");
-                        Console.WriteLine("The child is just learning, be kind to" +
+                        Console.WriteLine("a child!" +
+                            $"{child.WhoIs()} studies in " +
+                            $"{child.KindergartenOrSchool} ");
+                        Console.WriteLine("The child is just " +
+                            "learning, be kind to" + 
                             PickPronoun(child));
                         child.Beep();
                         break;
@@ -62,9 +68,9 @@ namespace LaunchLab
         static string PickPronoun(Child child)
         {
             if (child.Gender == Gender.Female)
-                return " her";
+                return " her.";
             else
-                return " him";
+                return " him.";
         }
 
     } 

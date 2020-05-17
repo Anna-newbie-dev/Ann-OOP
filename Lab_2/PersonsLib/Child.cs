@@ -26,6 +26,8 @@ namespace PersonsLib
 
         #region Fields
 
+        //private IsOrphan _orphan;
+
         /// <summary>
         /// Mother name
         /// </summary>
@@ -56,6 +58,16 @@ namespace PersonsLib
         #region Properties
 
         /// <summary>
+        /// A flag showing whether
+        /// a child is an orphan
+        /// </summary>
+        //public IsOrphan Orphan
+        //{
+        //    get { return _orphan; }
+        //    set { _orphan = value; }
+        //}
+
+        /// <summary>
         /// Age of a child
         /// </summary>
         public override byte Age
@@ -63,10 +75,12 @@ namespace PersonsLib
             get { return base.Age; }
             set
             {
+                //
                 if (value < MINAGE || value > MAXAGE)
                 {
                     throw new ArgumentOutOfRangeException(
-                        $"{nameof(value)} must be between 0 and 17.");
+                        $"{nameof(value)} must be between " +
+                        $"${MINAGE} and ${MAXAGE}.");
                 }
 
                 base.Age = value;
@@ -79,7 +93,11 @@ namespace PersonsLib
         public string MotherName
         {
             get { return _motherName; }
-            set { _motherName = value; }
+            set 
+            {
+                _motherName = FirstLetterUpperCase
+                    (ChecksInput(IfParentsExist(value)));
+            }
         }
 
         /// <summary>
@@ -88,7 +106,11 @@ namespace PersonsLib
         public string MotherSurname
         {
             get { return _motherSurname; }
-            set { _motherSurname = value; }
+            set 
+            {
+                _motherSurname = FirstLetterUpperCase
+                    (ChecksInput(IfParentsExist(value)));
+            }
         }
 
         /// <summary>
@@ -97,7 +119,11 @@ namespace PersonsLib
         public string FatherName
         {
             get { return _fatherName; }
-            set { _fatherName = value; }
+            set 
+            {
+                _fatherName = FirstLetterUpperCase
+                    (ChecksInput(IfParentsExist(value)));
+            }
         }
 
         /// <summary>
@@ -106,7 +132,11 @@ namespace PersonsLib
         public string FatherSurname
         {
             get { return _fatherSurname; }
-            set { _fatherSurname = value; }
+            set
+            {
+                _fatherSurname = FirstLetterUpperCase
+                    (ChecksInput(IfParentsExist(value)));
+            }
         }
        
         /// <summary>
@@ -156,52 +186,32 @@ namespace PersonsLib
 
         #region Methods
 
+        public string ChecksInput(string value)
+        {
+            if (!IsNameCorrect(value))
+            {
+                throw new FormatException(
+                   "The input parameter must contain Cyrillic or " +
+                   "Latin symbols only.");
+            }
+            return value;
+        }
         /// <summary>
         /// Form information about child
         /// </summary>
         public override string FormInfoAboutPerson()
         {
             var infoAboutPerson = base.FormInfoAboutPerson() +
-                $"{KindergartenOrSchool}\t";
-
-            if (string.IsNullOrEmpty(MotherName))
-            {
-                infoAboutPerson += "None\t";
-            }
-            else
-            {
-                infoAboutPerson += $"{MotherName}\t";
-            }
-                
-            if (string.IsNullOrEmpty(MotherSurname))
-            {
-                infoAboutPerson += "None\t";
-            }
-            else
-            {
-                infoAboutPerson += $"{MotherSurname}\t";
-            }
-
-            if (string.IsNullOrEmpty(FatherName))
-            {
-                infoAboutPerson += "None\t";
-            }
-            else
-            {
-                infoAboutPerson += $"{FatherName}\t";
-            }
-
-            if (string.IsNullOrEmpty(FatherSurname))
-            {
-                infoAboutPerson += "None\t";
-            }
-            else
-            {
-                infoAboutPerson += $"{FatherSurname}\t";
-            }
+                $"{KindergartenOrSchool}\t" +
+                $"{MotherName}\t" +
+                $"{MotherSurname}\t" +
+                $"{FatherName}\t" +
+                $"{FatherSurname}\t";
+            //TODO: Дубли(!)
             PrintChildHeader();
             return infoAboutPerson;
         }
+
         /// <summary>
         /// Prints header before
         /// data is displayed
@@ -246,6 +256,18 @@ namespace PersonsLib
             Console.Beep(493, 300);
             Console.Beep(700, 300);
             Console.Beep(659, 600);
+        }
+
+        public string IfParentsExist(string field)
+        {
+            if (string.IsNullOrEmpty(field))
+            {
+                return "None";
+            }
+            else
+            {
+                return $"{field}";
+            }
         }
 
         #endregion
