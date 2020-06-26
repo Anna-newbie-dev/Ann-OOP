@@ -1,8 +1,0 @@
-E:\Калентьев\Lab_2\LaunchLab\bin\Debug\PersonsLib.exe
-E:\Калентьев\Lab_2\LaunchLab\bin\Debug\PersonsLib.pdb
-E:\Калентьев\Lab_2\LaunchLab\bin\Debug\ConsoleApplication1.dll
-E:\Калентьев\Lab_2\LaunchLab\bin\Debug\ConsoleApplication1.pdb
-E:\Калентьев\Lab_2\LaunchLab\obj\x86\Debug\LaunchLab.csprojAssemblyReference.cache
-E:\Калентьев\Lab_2\LaunchLab\obj\x86\Debug\LaunchLab.csproj.CopyComplete
-E:\Калентьев\Lab_2\LaunchLab\obj\x86\Debug\PersonsLib.exe
-E:\Калентьев\Lab_2\LaunchLab\obj\x86\Debug\PersonsLib.pdb

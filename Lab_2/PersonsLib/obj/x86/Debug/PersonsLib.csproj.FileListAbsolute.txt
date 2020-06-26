@@ -1,5 +1,0 @@
-E:\Калентьев\Lab_2\PersonsLib\bin\Debug\ConsoleApplication1.dll
-E:\Калентьев\Lab_2\PersonsLib\bin\Debug\ConsoleApplication1.pdb
-E:\Калентьев\Lab_2\PersonsLib\obj\x86\Debug\PersonsLib.csprojAssemblyReference.cache
-E:\Калентьев\Lab_2\PersonsLib\obj\x86\Debug\ConsoleApplication1.dll
-E:\Калентьев\Lab_2\PersonsLib\obj\x86\Debug\ConsoleApplication1.pdb
