@@ -1,0 +1,8 @@
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\bin\Debug\netcoreapp3.1\WageLib.deps.json
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\bin\Debug\netcoreapp3.1\WageLib.dll
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\bin\Debug\netcoreapp3.1\WageLib.pdb
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\obj\Debug\netcoreapp3.1\WageLib.csprojAssemblyReference.cache
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\obj\Debug\netcoreapp3.1\WageLib.AssemblyInfoInputs.cache
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\obj\Debug\netcoreapp3.1\WageLib.AssemblyInfo.cs
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\obj\Debug\netcoreapp3.1\WageLib.dll
+E:\New Folder\Hometasks\Калентьев\Lab_3_Konsolev2\WageLib\obj\Debug\netcoreapp3.1\WageLib.pdb

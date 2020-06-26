@@ -1,0 +1,34 @@
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\bin\Debug\PersonsLib.exe
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\bin\Debug\PersonsLib.pdb
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\bin\Debug\ConsoleApplication1.exe
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\obj\x86\Debug\LaunchLab.csprojResolveAssemblyReference.cache
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\obj\x86\Debug\PersonsLib.exe
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\ConsoleApplication1\ConsoleApplication1\PersonsLib\obj\x86\Debug\PersonsLib.pdb
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\Lab_1\ConsoleApplication1\PersonsLib\obj\x86\Debug\PersonsLib.exe
+C:\Users\Ann\Documents\Visual Studio 2010\Projects\Lab_1\ConsoleApplication1\PersonsLib\obj\x86\Debug\PersonsLib.pdb
+d:\Ann\Домашние задания\Калентьев\Lab_1\ConsoleApplication1\PersonsLib\obj\x86\Debug\PersonsLib.exe
+d:\Ann\Домашние задания\Калентьев\Lab_1\ConsoleApplication1\PersonsLib\obj\x86\Debug\PersonsLib.pdb
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\LaunchLab.csprojResolveAssemblyReference.cache
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\PersonsLib.pdb
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\bin\Debug\PersonsLib.exe
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\bin\Debug\PersonsLib.pdb
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\bin\Debug\ConsoleApplication1.pdb
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\PersonsLib.exe
+D:\Ann\Домашние задания\Калентьев\Lab_1\LaunchLab\bin\Debug\ConsoleApplication1.dll
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\bin\Debug\PersonsLib.exe
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\bin\Debug\PersonsLib.pdb
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\bin\Debug\ConsoleApplication1.dll
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\bin\Debug\ConsoleApplication1.pdb
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\LaunchLab.csprojAssemblyReference.cache
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\LaunchLab.csproj.CopyComplete
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\PersonsLib.exe
+E:\New Folder\Hometasks\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\PersonsLib.pdb
+e:\Калентьев\Lab_1\LaunchLab\bin\Debug\PersonsLib.exe
+e:\Калентьев\Lab_1\LaunchLab\bin\Debug\PersonsLib.pdb
+e:\Калентьев\Lab_1\LaunchLab\bin\Debug\ConsoleApplication1.dll
+e:\Калентьев\Lab_1\LaunchLab\bin\Debug\ConsoleApplication1.pdb
+e:\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\LaunchLab.csprojAssemblyReference.cache
+e:\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\LaunchLab.csproj.CopyComplete
+e:\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\PersonsLib.exe
+e:\Калентьев\Lab_1\LaunchLab\obj\x86\Debug\PersonsLib.pdb
