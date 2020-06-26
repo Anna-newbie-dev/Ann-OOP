@@ -18,7 +18,6 @@ namespace LaunchLab
         /// </summary>
         private static Random _random = new Random();
 
-        #endregion
 
         #region Objects array
 

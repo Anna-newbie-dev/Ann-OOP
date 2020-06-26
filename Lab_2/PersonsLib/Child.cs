@@ -26,8 +26,6 @@ namespace PersonsLib
 
         #region Fields
 
-        //private IsOrphan _orphan;
-
         /// <summary>
         /// Mother name
         /// </summary>
@@ -61,11 +59,6 @@ namespace PersonsLib
         /// A flag showing whether
         /// a child is an orphan
         /// </summary>
-        //public IsOrphan Orphan
-        //{
-        //    get { return _orphan; }
-        //    set { _orphan = value; }
-        //}
 
         /// <summary>
         /// Age of a child
@@ -186,6 +179,10 @@ namespace PersonsLib
 
         #region Methods
 
+        /// <summary>
+        /// Проверка правильности ввода
+        /// </summary>
+        /// <param name="value">строка на проверку</param>
         public string ChecksInput(string value)
         {
             if (!IsNameCorrect(value))
@@ -196,6 +193,7 @@ namespace PersonsLib
             }
             return value;
         }
+
         /// <summary>
         /// Form information about child
         /// </summary>
@@ -207,7 +205,6 @@ namespace PersonsLib
                 $"{MotherSurname}\t" +
                 $"{FatherName}\t" +
                 $"{FatherSurname}\t";
-            //TODO: Дубли(!)
             PrintChildHeader();
             return infoAboutPerson;
         }
@@ -258,6 +255,11 @@ namespace PersonsLib
             Console.Beep(659, 600);
         }
 
+        /// <summary>
+        /// Заменяет пустую строку
+        /// строкой None
+        /// </summary>
+        /// <param name="field">строка на проверку</param>
         public string IfParentsExist(string field)
         {
             if (string.IsNullOrEmpty(field))

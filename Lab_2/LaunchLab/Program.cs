@@ -36,20 +36,19 @@ namespace LaunchLab
             }
 
             Console.Write("And fourth entry is ");
-            //TODO: Добавить метод специфичный для типа (!)
             switch (listOne[3])
             {
                 case Adult adult:
                     {
-                        Console.WriteLine("an adult!" +
-                            $"{adult.WhoIs()}  works in" +
+                        Console.WriteLine("an adult! " +
+                            $"{adult.WhoIs()} works in " +
                             $"{adult.WorkPlace}");
                         adult.Beep();
                         break;
                     }
                 case Child child:
                     {
-                        Console.WriteLine("a child!" +
+                        Console.WriteLine("a child! " +
                             $"{child.WhoIs()} studies in " +
                             $"{child.KindergartenOrSchool} ");
                         Console.WriteLine("The child is just " +
