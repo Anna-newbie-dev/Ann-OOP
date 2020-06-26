@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WageLib;
 
 namespace Lab_3
@@ -22,35 +23,10 @@ namespace Lab_3
                 switch (ExceptionHandler())
                 {
                     case 1:
-                        PartTime partTime = new PartTime();
-                        Console.Write("Введите отработанное количество" +
-                            " часов: ");
-                        // создано перечисление констант, которые 
-                        // передаются в метод проверки
-                        // и указывают методу, какое именно поле 
-                        // мы заполняем
-                        partTime.Shifts = partTime.DataInputAndCheck
-                            (Bounds.MAXSHIFTS);
-                        Console.Write("Стоимость часа: ");
-                        partTime.Salary = partTime.DataInputAndCheck
-                            (Bounds.MAXSALARY);
-                        Console.WriteLine("Получилось: {0}",
-                            partTime.CalculateWage());
+                        ReadPartTime();
                         break;
                     case 2:
-                        FullTime fullTime = new FullTime();
-                        Console.Write("Введите отработанное количество" +
-                            " часов из производственного календаря: ");
-                        fullTime.Shifts = fullTime.DataInputAndCheck
-                            (Bounds.MAXSHIFTS);
-                        Console.Write("Введите оклад:");
-                        fullTime.Salary = fullTime.DataInputAndCheck
-                            (Bounds.MAXSALARY);
-                        Console.Write("Cтавка: ");
-                        fullTime.Rate = fullTime.DataInputAndCheck
-                            (Bounds.MAXRATE);
-                        Console.WriteLine("Получилось: {0}",
-                            fullTime.CalculateWage());
+                        ReadFullTime();
                         break;
                     case 0:
                         flag = false;
@@ -61,8 +37,7 @@ namespace Lab_3
                         break;
                 }
             }
-            Console.WriteLine("Все, пока! Нажмите любую кнопку.");
-            
+            Console.WriteLine("Нажмите любую кнопку, чтобы выйти.");
             Console.ReadKey();
         }
 
@@ -71,13 +46,11 @@ namespace Lab_3
         /// </summary>
         private static int ExceptionHandler()
         {
-            int option = 0;
             while (true)
             {
                 try
                 {
-                    option = int.Parse(Console.ReadLine());
-                    return option;
+                    return int.Parse(Console.ReadLine()); 
                 }
                 catch (FormatException)
                 {
@@ -96,7 +69,121 @@ namespace Lab_3
             Console.WriteLine("Что будем рассчитывать?");
             Console.WriteLine("1 - PartTime; 2 - FullTime; 0 -exit.");
         }
-        
+
+        /// <summary>
+        /// Проверка на возможность
+        /// преобразования string в double
+        /// </summary>
+        /// <returns>Преобразованное
+        /// число типа double</returns>
+        private static double CheckInput()
+        {
+            while (true)
+            {
+                try
+                {
+                    return Math.Round(double.Parse(Console.ReadLine().
+                          Replace('.', ',')));
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Возможно, Вы ввели " +
+                        "не численное значение. Повторите ввод.");
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Получить пользовательский ввод и задать параметр
+        /// </summary>
+        /// <param name="action">Делегат с заданием параметра</param>
+        public static void SetValue(Action action)
+        {
+            while (true)
+            {
+                try
+                {
+                    action.Invoke();
+                    return;
+                }
+                catch (Exception e)
+                {
+                    if (e is FormatException 
+                        || e is ArgumentOutOfRangeException)
+                    {
+                        TryAgain();
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Записывает данные в поля
+        /// класса PartTime
+        /// </summary>
+        public static void ReadPartTime()
+        {
+            PartTime partTime = new PartTime();
+            var partTimeActions = new List<Action>()
+            {
+                new Action( () =>
+                {
+                    Console.Write("Введите отработанное количество" +
+                        " часов: ");
+                    partTime.Shifts = CheckInput();
+                }),
+                new Action( () =>
+                {
+                    Console.Write("Введите стоимость часа: ");
+                    partTime.Salary = CheckInput();;
+                }),
+            };
+            partTimeActions.ForEach(SetValue);
+            Console.WriteLine("Получилось: {0}",
+                partTime.CalculateWage());
+        }
+
+        /// <summary>
+        /// Записывает данные в поля
+        /// класса FullTime
+        /// </summary>
+        public static void ReadFullTime()
+        {
+            FullTime fullTime = new FullTime();
+            var fullTimeActions = new List<Action>()
+            {
+                new Action( () =>
+                {
+                    Console.Write("Введите отработанное количество" +
+                        " часов из производственного календаря: ");
+                    fullTime.Shifts = CheckInput();
+                }),
+                new Action( () =>
+                {
+                    Console.Write("Введите оклад: ");
+                    fullTime.Salary = CheckInput();;
+                }),
+                new Action( () =>
+                {
+                    Console.Write("Введите ставку: ");
+                    fullTime.Rate = CheckInput();;
+                }),
+            };
+            fullTimeActions.ForEach(SetValue);
+            Console.WriteLine("Получилось: {0}",
+                fullTime.CalculateWage());
+        }
+
+        /// <summary>
+        /// Shows a message
+        /// to try input again
+        /// </summary>
+        public static void TryAgain()
+        {
+            Console.WriteLine("Повторите ввод.");
+        }
 
     }
 }

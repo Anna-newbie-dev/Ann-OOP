@@ -28,12 +28,7 @@ namespace WageLib
         /// </summary>
         double CalculateWage();
 
-        /// <summary>
-        /// Проверка данных
-        /// при записи в поле класса
-        /// </summary>
-        double AutoPropertyCheck(double param, int constant);
-
+        //TODO: Убрать из интерфейса !
         #endregion
     }
 }
