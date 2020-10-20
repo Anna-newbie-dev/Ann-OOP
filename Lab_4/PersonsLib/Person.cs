@@ -25,15 +25,15 @@ namespace PersonsLib
         /// </summary>
         private string _patronymic;
 
-        /// <summary>
-        /// Возраст
-        /// </summary>
-        private int _age;
+        ///// <summary>
+        ///// Возраст
+        ///// </summary>
+        //private int _age;
 
-        /// <summary>
-        /// Пол
-        /// </summary>
-        private Gender _gender;
+        ///// <summary>
+        ///// Пол
+        ///// </summary>
+        //private Gender _gender;
 
         #endregion
 
@@ -161,13 +161,13 @@ namespace PersonsLib
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new ArgumentNullException(
+                throw new Exception(
                     "Поля ФИО не могут быть пустыми! " +
                     "Проверьте, все ли поля заполнены");
             }
             if (!IsNameCorrect(value))
             {
-                 throw new FormatException(
+                 throw new Exception(
                     "ФИО может содержать только" +
                     "латинские или кириллические символы!");
             }
