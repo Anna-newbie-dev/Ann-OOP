@@ -25,16 +25,6 @@ namespace PersonsLib
         /// </summary>
         private string _patronymic;
 
-        ///// <summary>
-        ///// Возраст
-        ///// </summary>
-        //private int _age;
-
-        ///// <summary>
-        ///// Пол
-        ///// </summary>
-        //private Gender _gender;
-
         #endregion
 
         #region Properties
@@ -77,33 +67,6 @@ namespace PersonsLib
                 _patronymic = FirstLetterUpperCase(value);
             }
         }
-
-        ///// <summary>
-        ///// Возраст
-        ///// </summary>
-        //public int Age
-        //{
-        //    get { return _age; }
-        //    set
-        //    {
-        //        if (value < 0 || value > 150)
-        //        {
-        //            throw new ArgumentOutOfRangeException(
-        //                "Age must be between 0 and 150! "+
-        //                "Please, again");
-        //        }
-        //        _age = value;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Gender
-        ///// </summary>
-        //public Gender Gender
-        //{
-        //    get { return _gender; }
-        //    set { _gender = value; }
-        //}
 
         #endregion
 

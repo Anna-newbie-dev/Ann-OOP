@@ -138,7 +138,6 @@ namespace Lab_4
                 }
 
                 ((WageForm)this.Tag).dataTable.Rows.Add(
-                    null,
                     newPerson.LastName,
                     newPerson.FirstName,
                     newPerson.LastName,
@@ -262,32 +261,7 @@ namespace Lab_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LastNameBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IgnoreSpaces(e);
-        }
-
-        private void FirstNameBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IgnoreSpaces(e);
-        }
-
-        private void PatroBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IgnoreSpaces(e);
-        }
-
-        private void HoursBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IgnoreSpaces(e);
-        }
-
-        private void RateBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            IgnoreSpaces(e);
-        }
-
-        private void SalaryBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             IgnoreSpaces(e);
         }
@@ -304,34 +278,9 @@ namespace Lab_4
             }
         }
 
-        private void LastNameBox_Enter(object sender, EventArgs e)
+        private void TextBox_Enter(object sender, EventArgs e)
         {
             MoveCursorToTheStartPos((MaskedTextBox)sender);
-        }
-
-        private void FirstNameBox_Enter(object sender, EventArgs e)
-        {
-            MoveCursorToTheStartPos(FirstNameBox);
-        }
-
-        private void PatroBox_Enter(object sender, EventArgs e)
-        {
-            MoveCursorToTheStartPos(PatroBox);
-        }
-
-        private void HoursBox_Enter(object sender, EventArgs e)
-        {
-            MoveCursorToTheStartPos(HoursBox);
-        }
-
-        private void RateBox_Enter(object sender, EventArgs e)
-        {
-            MoveCursorToTheStartPos(RateBox);
-        }
-
-        private void SalaryBox_Enter(object sender, EventArgs e)
-        {
-            MoveCursorToTheStartPos(SalaryBox);
         }
         
         /// <summary>
@@ -355,11 +304,6 @@ namespace Lab_4
                 tmpBolean = tmpBolean && TextBoxValidatingWithErrorProvider(textBox);
             }
             ButtonCount.Enabled = tmpBolean;
-        }
-
-        private void HoursBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
         }
                
         /// <summary>
@@ -441,7 +385,6 @@ namespace Lab_4
             SalaryBox.Visible = true;
             labelSalary.Visible = true;
         }
-
 
         #endregion
 

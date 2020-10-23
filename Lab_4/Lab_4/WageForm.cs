@@ -139,18 +139,16 @@ namespace Lab_4
             dataGridView.ClearSelection();
             string searchQuery = SearchBox.Text;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            bool valueResult = false;
 
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 for (int i = 0; i < row.Cells.Count; i++)
                 {
-                    if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().
-                        Contains(searchQuery))
+                    if (row.Cells[i].Value != null && 
+                        row.Cells[i].Value.ToString().ToLower().Contains(searchQuery.ToLower()))
                     {
                         int rowIndex = row.Index;
                         dataGridView.Rows[rowIndex].Selected = true;
-                        valueResult = true;
                         break;
                     }
 
@@ -265,7 +263,7 @@ namespace Lab_4
             Person newPerson = new Person();
             newPerson = RandomData.PickPerson();
             
-            var randomNumber = rnd.Next(1, 2);
+            var randomNumber = random.Next(1, 2);
             switch (randomNumber)
             {
                 case 1:
@@ -276,7 +274,6 @@ namespace Lab_4
                         fullTime.Rate = RandomData.GenerateNumber();
 
                         dataTable.Rows.Add(
-                        //null,
                         newPerson.LastName,
                         newPerson.FirstName,
                         newPerson.Patronymic,
@@ -291,7 +288,6 @@ namespace Lab_4
                         partTime.Salary = RandomData.GenerateNumber();
  
                         dataTable.Rows.Add(
-                        //null,
                         newPerson.LastName,
                         newPerson.FirstName,
                         newPerson.LastName,

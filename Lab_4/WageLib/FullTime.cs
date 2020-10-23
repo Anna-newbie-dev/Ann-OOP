@@ -8,8 +8,6 @@ namespace WageLib
     /// </summary>
     public class FullTime : IWage
     {
-        //TODO: static
-        private Checker checker = new Checker();
 
         #region Constants
 
@@ -46,7 +44,7 @@ namespace WageLib
         {
             get => _shifts;
             set =>
-                _shifts = checker.AutoPropertyCheck(value, MAXSHIFTS);
+                _shifts = Checker.AutoPropertyCheck(value, MAXSHIFTS, "Количество часов");
         }
 
         /// <summary>
@@ -56,7 +54,7 @@ namespace WageLib
         {
             get => _salary;
             set =>
-                _salary = checker.AutoPropertyCheck(value, MAXSALARY);
+                _salary = Checker.AutoPropertyCheck(value, MAXSALARY, "Оклад");
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace WageLib
         public double Rate
         {
             get => _rate;
-            set => _rate = checker.AutoPropertyCheck(value, MAXRATE);
+            set => _rate = Checker.AutoPropertyCheck(value, MAXRATE, "Ставка");
         }
         #endregion
 

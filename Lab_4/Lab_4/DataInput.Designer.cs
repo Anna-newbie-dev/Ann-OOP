@@ -120,8 +120,8 @@
             this.PatroBox.PromptChar = ' ';
             this.PatroBox.Size = new System.Drawing.Size(203, 22);
             this.PatroBox.TabIndex = 30;
-            this.PatroBox.Enter += new System.EventHandler(this.PatroBox_Enter);
-            this.PatroBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PatroBox_KeyPress);
+            this.PatroBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.PatroBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.PatroBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // FirstNameBox
@@ -132,8 +132,8 @@
             this.FirstNameBox.PromptChar = ' ';
             this.FirstNameBox.Size = new System.Drawing.Size(158, 22);
             this.FirstNameBox.TabIndex = 29;
-            this.FirstNameBox.Enter += new System.EventHandler(this.FirstNameBox_Enter);
-            this.FirstNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FirstNameBox_KeyPress);
+            this.FirstNameBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.FirstNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.FirstNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // LastNameBox
@@ -144,8 +144,8 @@
             this.LastNameBox.PromptChar = ' ';
             this.LastNameBox.Size = new System.Drawing.Size(159, 22);
             this.LastNameBox.TabIndex = 28;
-            this.LastNameBox.Enter += new System.EventHandler(this.LastNameBox_Enter);
-            this.LastNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LastNameBox_KeyPress);
+            this.LastNameBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.LastNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.LastNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label1
@@ -217,8 +217,8 @@
             this.SalaryBox.PromptChar = ' ';
             this.SalaryBox.Size = new System.Drawing.Size(166, 22);
             this.SalaryBox.TabIndex = 33;
-            this.SalaryBox.Enter += new System.EventHandler(this.SalaryBox_Enter);
-            this.SalaryBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SalaryBox_KeyPress);
+            this.SalaryBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.SalaryBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.SalaryBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label5
@@ -241,8 +241,8 @@
             this.RateBox.PromptChar = ' ';
             this.RateBox.Size = new System.Drawing.Size(166, 22);
             this.RateBox.TabIndex = 32;
-            this.RateBox.Enter += new System.EventHandler(this.RateBox_Enter);
-            this.RateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RateBox_KeyPress);
+            this.RateBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.RateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             this.RateBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label4
@@ -303,10 +303,9 @@
             this.HoursBox.PromptChar = ' ';
             this.HoursBox.Size = new System.Drawing.Size(166, 22);
             this.HoursBox.TabIndex = 31;
-            this.HoursBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.HoursBox_MaskInputRejected);
-            this.HoursBox.Enter += new System.EventHandler(this.HoursBox_Enter);
-            this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HoursBox_KeyPress);
-            this.HoursBox.Validating += new System.ComponentModel.CancelEventHandler(this.HoursBox_Validating);
+            this.HoursBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            this.HoursBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // labelHours
             // 

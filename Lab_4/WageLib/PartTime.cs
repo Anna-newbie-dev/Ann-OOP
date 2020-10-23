@@ -6,9 +6,8 @@
     /// </summary>
     public class PartTime : IWage
     {
-        //TODO:
-        private Checker checker = new Checker();
-
+        //TODO:Класс Checker был сделан статическим
+        
         #region Constants
 
         private int MAXSHIFTS = 500;
@@ -37,7 +36,7 @@
         public double Shifts
         {
             get => _shifts;
-            set => _shifts = checker.AutoPropertyCheck(value, MAXSHIFTS);
+            set => _shifts = Checker.AutoPropertyCheck(value, MAXSHIFTS, "Количество часов");
 
         }
 
@@ -47,7 +46,7 @@
         public double Salary
         {
             get => _salary;
-            set => _salary = checker.AutoPropertyCheck(value, MAXSALARY);
+            set => _salary = Checker.AutoPropertyCheck(value, MAXSALARY, "Стоимость часа");
         }
 
         #endregion
