@@ -14,14 +14,7 @@ namespace Lab_4
     /// </summary>
     public partial class DataInput : Form
     {
-        
-        WageForm wageForm;
-
-        Person newPerson = new Person();
-
-        public PartTime partTime = new PartTime();
-        public FullTime fullTime = new FullTime();
-
+        //TODO: RSDN
         private readonly List<MaskedTextBox> _partTimeTextBox;
 
         private readonly List<MaskedTextBox> _fullTimeTextBox;
@@ -38,12 +31,21 @@ namespace Lab_4
 
             _partTimeTextBox = new List<MaskedTextBox>
             {
-                LastNameBox, FirstNameBox, PatroBox, HoursBox, RateBox
+                LastNameBox, 
+                FirstNameBox, 
+                PatroBox, 
+                HoursBox, 
+                RateBox
             };
 
             _fullTimeTextBox = new List<MaskedTextBox>
             {
-                LastNameBox, FirstNameBox, PatroBox, HoursBox, RateBox, SalaryBox
+                LastNameBox, 
+                FirstNameBox, 
+                PatroBox, 
+                HoursBox, 
+                RateBox, 
+                SalaryBox
             };
         }
 
@@ -111,34 +113,7 @@ namespace Lab_4
         #endregion
 
         #region Запись данных
-
-        /// <summary>
-        /// Добавление полей в таблицу на главной форме
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void AddToListButton_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        outputListBox.Items.Clear();
-        //        //list.AddPerson(ReadPerson());
-        //        newPerson = ReadPerson();
-        //        ((WageForm)this.Tag).dataTable.Rows.Add(
-        //        null,
-        //        newPerson.LastName,
-        //        newPerson.FirstName,
-        //        newPerson.LastName,
-        //        TotalBox.Text
-        //        );
-        //    }
-        //    catch (Exception exp)
-        //    {
-        //        outputListBox.Items.Add(exp.Message);
-        //        return;
-        //    }
-        //}
-
+        
         /// <summary>
         /// Расчет и отображение причитающейся суммы
         /// </summary>
@@ -151,7 +126,7 @@ namespace Lab_4
             try
             {
                 outputListBox.Items.Clear();
-                newPerson = ReadPerson();
+                var newPerson = ReadPerson();
 
                 if (FullTimeRadioButton.Checked)
                 {
@@ -163,12 +138,11 @@ namespace Lab_4
                 }
 
                 ((WageForm)this.Tag).dataTable.Rows.Add(
-                null,
-                newPerson.LastName,
-                newPerson.FirstName,
-                newPerson.LastName,
-                TotalBox.Text
-                );
+                    null,
+                    newPerson.LastName,
+                    newPerson.FirstName,
+                    newPerson.LastName,
+                    TotalBox.Text);
             }
             catch (Exception exp)
             {
@@ -198,7 +172,7 @@ namespace Lab_4
         /// Записывает данные в поля
         /// класса PartTime
         /// </summary>
-        public void ReadAndCountPartTime()
+        private void ReadAndCountPartTime()
         {
             PartTime partTime = new PartTime();
             var partTimeActions = new List<Action>()
@@ -220,7 +194,7 @@ namespace Lab_4
         /// Записывает данные в поля
         /// класса FullTime
         /// </summary>
-        public void ReadAndCountFullTime()
+        private void ReadAndCountFullTime()
         {
             FullTime fullTime = new FullTime();
             var fullTimeActions = new List<Action>()
@@ -246,7 +220,7 @@ namespace Lab_4
         /// Записывает данные в поля
         /// класса Person
         /// </summary>
-        public Person ReadPerson()
+        private Person ReadPerson()
         {
             Person newPerson = new Person();
             var newPersonActions = new List<Action>()
@@ -277,44 +251,7 @@ namespace Lab_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LastNameBox_Validating(object sender, CancelEventArgs e)
-        {
-            AllFieldsOk();
-        }
-
-        /// <summary>
-        /// Проверка поля Имя
-        /// по мере ввода
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FirstNameBox_Validating(object sender, CancelEventArgs e)
-        {
-            AllFieldsOk();
-        }
-
-        /// <summary>
-        /// Проверка поля Отчество
-        /// по мере ввода
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PatroBox_Validating(object sender, CancelEventArgs e)
-        {
-            AllFieldsOk();
-        }
-
-        private void HoursBox_Validating(object sender, CancelEventArgs e)
-        {
-            AllFieldsOk();
-        }
-
-        private void RateBox_Validating(object sender, CancelEventArgs e)
-        {
-            AllFieldsOk();
-        }
-
-        private void SalaryBox_Validating(object sender, CancelEventArgs e)
+        private void TextBox_Validating(object sender, CancelEventArgs e)
         {
             AllFieldsOk();
         }
@@ -361,12 +298,15 @@ namespace Lab_4
         /// <param name="e"></param>
         private void IgnoreSpaces(KeyPressEventArgs e)
         {
-            if (e.KeyChar == ' ') e.KeyChar = (char)0;
+            if (e.KeyChar == ' ')
+            {
+                e.KeyChar = (char)0;
+            }
         }
 
         private void LastNameBox_Enter(object sender, EventArgs e)
         {
-            MoveCursorToTheStartPos(LastNameBox);
+            MoveCursorToTheStartPos((MaskedTextBox)sender);
         }
 
         private void FirstNameBox_Enter(object sender, EventArgs e)

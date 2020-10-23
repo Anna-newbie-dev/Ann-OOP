@@ -8,6 +8,7 @@ namespace WageLib
     /// </summary>
     public class FullTime : IWage
     {
+        //TODO: static
         private Checker checker = new Checker();
 
         #region Constants

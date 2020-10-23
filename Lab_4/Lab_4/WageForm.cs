@@ -20,11 +20,13 @@ namespace Lab_4
     /// </summary>
     public partial class WageForm : Form
     {
+        //TODO: RSDN
         /// <summary>
         /// Таблица для хранения данных
         /// </summary>
         public DataTable dataTable = new DataTable();
 
+        //TODO: RSDN
         public DataInput dataInput;
 
         /// <summary>
@@ -46,12 +48,12 @@ namespace Lab_4
 #endif
 
             dataTable.Columns.AddRange(new DataColumn[4]
-                {
+            {
                 //new DataColumn("№"),
                 new DataColumn("Фамилия"), new DataColumn("Имя"),
                 new DataColumn("Отчество"),
                 new DataColumn("Сумма к выплате")
-                });
+            });
             //dataTable.Columns["№"].AutoIncrement = true;
             //dataTable.Columns["№"].AutoIncrementSeed = 1;
             //dataTable.Columns["№"].AutoIncrementStep = 1;
@@ -129,7 +131,10 @@ namespace Lab_4
         /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (SearchBox.Text == "") { dataGridView.ClearSelection(); }
+            if (SearchBox.Text == "")
+            {
+                dataGridView.ClearSelection();
+            }
 
             dataGridView.ClearSelection();
             string searchQuery = SearchBox.Text;
@@ -197,7 +202,9 @@ namespace Lab_4
         private void SearchBox_Leave(object sender, EventArgs e)
         {
             if (SearchBox.Text.Trim() == "")
+            {
                 SearchBox_SetText();
+            }
         }
 
         /// <summary>
@@ -253,7 +260,8 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            //TODO: RSDN
+            Random random = new Random();
             Person newPerson = new Person();
             newPerson = RandomData.PickPerson();
             

@@ -6,6 +6,7 @@
     /// </summary>
     public class PartTime : IWage
     {
+        //TODO:
         private Checker checker = new Checker();
 
         #region Constants

@@ -122,7 +122,7 @@
             this.PatroBox.TabIndex = 30;
             this.PatroBox.Enter += new System.EventHandler(this.PatroBox_Enter);
             this.PatroBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PatroBox_KeyPress);
-            this.PatroBox.Validating += new System.ComponentModel.CancelEventHandler(this.PatroBox_Validating);
+            this.PatroBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // FirstNameBox
             // 
@@ -134,7 +134,7 @@
             this.FirstNameBox.TabIndex = 29;
             this.FirstNameBox.Enter += new System.EventHandler(this.FirstNameBox_Enter);
             this.FirstNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FirstNameBox_KeyPress);
-            this.FirstNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.FirstNameBox_Validating);
+            this.FirstNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // LastNameBox
             // 
@@ -146,7 +146,7 @@
             this.LastNameBox.TabIndex = 28;
             this.LastNameBox.Enter += new System.EventHandler(this.LastNameBox_Enter);
             this.LastNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LastNameBox_KeyPress);
-            this.LastNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.LastNameBox_Validating);
+            this.LastNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label1
             // 
@@ -219,7 +219,7 @@
             this.SalaryBox.TabIndex = 33;
             this.SalaryBox.Enter += new System.EventHandler(this.SalaryBox_Enter);
             this.SalaryBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SalaryBox_KeyPress);
-            this.SalaryBox.Validating += new System.ComponentModel.CancelEventHandler(this.SalaryBox_Validating);
+            this.SalaryBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label5
             // 
@@ -243,7 +243,7 @@
             this.RateBox.TabIndex = 32;
             this.RateBox.Enter += new System.EventHandler(this.RateBox_Enter);
             this.RateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RateBox_KeyPress);
-            this.RateBox.Validating += new System.ComponentModel.CancelEventHandler(this.RateBox_Validating);
+            this.RateBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label4
             // 
