@@ -39,6 +39,7 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.AddNewEntryButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.randomButton = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox5.Location = new System.Drawing.Point(28, 70);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(594, 374);
+            this.groupBox5.Size = new System.Drawing.Size(520, 374);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Отображение данных";
@@ -70,7 +71,7 @@
             // 
             // SearchBox
             // 
-            this.SearchBox.Location = new System.Drawing.Point(16, 283);
+            this.SearchBox.Location = new System.Drawing.Point(16, 282);
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.Size = new System.Drawing.Size(274, 22);
             this.SearchBox.TabIndex = 22;
@@ -81,7 +82,7 @@
             // LoadDataButton
             // 
             this.LoadDataButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LoadDataButton.Location = new System.Drawing.Point(440, 323);
+            this.LoadDataButton.Location = new System.Drawing.Point(330, 323);
             this.LoadDataButton.Name = "LoadDataButton";
             this.LoadDataButton.Size = new System.Drawing.Size(135, 33);
             this.LoadDataButton.TabIndex = 21;
@@ -103,7 +104,7 @@
             // saveFileButton
             // 
             this.saveFileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveFileButton.Location = new System.Drawing.Point(219, 323);
+            this.saveFileButton.Location = new System.Drawing.Point(166, 324);
             this.saveFileButton.Name = "saveFileButton";
             this.saveFileButton.Size = new System.Drawing.Size(136, 33);
             this.saveFileButton.TabIndex = 19;
@@ -118,7 +119,7 @@
             this.dataGridView.Location = new System.Drawing.Point(16, 21);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(558, 239);
+            this.dataGridView.Size = new System.Drawing.Size(491, 239);
             this.dataGridView.TabIndex = 4;
             // 
             // programName
@@ -136,7 +137,7 @@
             // AddNewEntryButton
             // 
             this.AddNewEntryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddNewEntryButton.Location = new System.Drawing.Point(628, 221);
+            this.AddNewEntryButton.Location = new System.Drawing.Point(566, 175);
             this.AddNewEntryButton.Name = "AddNewEntryButton";
             this.AddNewEntryButton.Size = new System.Drawing.Size(48, 33);
             this.AddNewEntryButton.TabIndex = 22;
@@ -147,7 +148,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DeleteButton.Location = new System.Drawing.Point(628, 275);
+            this.DeleteButton.Location = new System.Drawing.Point(566, 232);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(48, 33);
             this.DeleteButton.TabIndex = 23;
@@ -155,13 +156,25 @@
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // randomButton
+            // 
+            this.randomButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.randomButton.Location = new System.Drawing.Point(447, 19);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(156, 43);
+            this.randomButton.TabIndex = 24;
+            this.randomButton.Text = "Добавить произвольные данные";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.RandomButton_Click);
+            // 
             // WageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(686, 474);
+            this.ClientSize = new System.Drawing.Size(629, 474);
+            this.Controls.Add(this.randomButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddNewEntryButton);
             this.Controls.Add(this.programName);
@@ -189,5 +202,6 @@
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button randomButton;
     }
 }

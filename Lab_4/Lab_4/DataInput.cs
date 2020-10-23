@@ -22,13 +22,9 @@ namespace Lab_4
         public PartTime partTime = new PartTime();
         public FullTime fullTime = new FullTime();
 
-        /// <summary>
-        /// Флаг, все ли поля удовлетворяют вводу
-        /// </summary>
-        private bool _allOk;
+        private readonly List<MaskedTextBox> _partTimeTextBox;
 
-        private bool _lastNameOk, _firstNameOk, _patroOk,
-            _shiftOk, _salaryOk, _rateOk;
+        private readonly List<MaskedTextBox> _fullTimeTextBox;
 
         /// <summary>
         /// Форма ввода данных
@@ -39,6 +35,16 @@ namespace Lab_4
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new System.Drawing.Point(900, 700);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            _partTimeTextBox = new List<MaskedTextBox>
+            {
+                LastNameBox, FirstNameBox, PatroBox, HoursBox, RateBox
+            };
+
+            _fullTimeTextBox = new List<MaskedTextBox>
+            {
+                LastNameBox, FirstNameBox, PatroBox, HoursBox, RateBox, SalaryBox
+            };
         }
 
         /// <summary>
@@ -51,9 +57,7 @@ namespace Lab_4
             PartTimeRadioButton.Checked = true;
             ButtonCount.Enabled = false;
         }
-
-        
-
+      
         #region Валидация данных
                 
         /// <summary>
@@ -82,7 +86,6 @@ namespace Lab_4
                 FieldIsOk = true;
                 return FieldIsOk;
             }
-            //ButtonCount.Enabled = AllOk;
         }
 
         /// <summary>
@@ -166,14 +169,12 @@ namespace Lab_4
                 newPerson.LastName,
                 TotalBox.Text
                 );
-
             }
             catch (Exception exp)
             {
                 outputListBox.Items.Add(exp.Message);
                 return;
             }
-
         }
 
         /// <summary>
@@ -189,8 +190,7 @@ namespace Lab_4
             }
             catch (Exception e)
             {
-                outputListBox.Items.Add(e.Message);
-                return;
+                throw e;
             }
         }
 
@@ -198,7 +198,7 @@ namespace Lab_4
         /// Записывает данные в поля
         /// класса PartTime
         /// </summary>
-        private void ReadAndCountPartTime()
+        public void ReadAndCountPartTime()
         {
             PartTime partTime = new PartTime();
             var partTimeActions = new List<Action>()
@@ -220,7 +220,7 @@ namespace Lab_4
         /// Записывает данные в поля
         /// класса FullTime
         /// </summary>
-        private void ReadAndCountFullTime()
+        public void ReadAndCountFullTime()
         {
             FullTime fullTime = new FullTime();
             var fullTimeActions = new List<Action>()
@@ -246,7 +246,7 @@ namespace Lab_4
         /// Записывает данные в поля
         /// класса Person
         /// </summary>
-        private Person ReadPerson()
+        public Person ReadPerson()
         {
             Person newPerson = new Person();
             var newPersonActions = new List<Action>()
@@ -271,25 +271,7 @@ namespace Lab_4
         #endregion
 
         #region Всякая обработка с красотой
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void HoursBox_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (FullTimeRadioButton.Checked)
-        //    {
-        //        fullTime.Shifts = CheckInput(HoursBox.Text);
-        //    }
-        //    else if (PartTimeRadioButton.Checked)
-        //    {
-        //        partTime.Shifts = CheckInput(HoursBox.Text);
-        //    }
-        //}
-      
-
-        /// <summary>
+         /// <summary>
         /// Проверка поля Фамилия
         /// по мере ввода
         /// </summary>
@@ -297,7 +279,6 @@ namespace Lab_4
         /// <param name="e"></param>
         private void LastNameBox_Validating(object sender, CancelEventArgs e)
         {
-            _lastNameOk = TextBoxValidatingWithErrorProvider(LastNameBox);
             AllFieldsOk();
         }
 
@@ -309,7 +290,6 @@ namespace Lab_4
         /// <param name="e"></param>
         private void FirstNameBox_Validating(object sender, CancelEventArgs e)
         {
-            _firstNameOk = TextBoxValidatingWithErrorProvider(FirstNameBox);
             AllFieldsOk();
         }
 
@@ -321,25 +301,21 @@ namespace Lab_4
         /// <param name="e"></param>
         private void PatroBox_Validating(object sender, CancelEventArgs e)
         {
-            _patroOk = TextBoxValidatingWithErrorProvider(PatroBox);
             AllFieldsOk();
         }
 
         private void HoursBox_Validating(object sender, CancelEventArgs e)
         {
-            _shiftOk = TextBoxValidatingWithErrorProvider(HoursBox);
             AllFieldsOk();
         }
 
         private void RateBox_Validating(object sender, CancelEventArgs e)
         {
-            _rateOk = TextBoxValidatingWithErrorProvider(RateBox);
             AllFieldsOk();
         }
 
         private void SalaryBox_Validating(object sender, CancelEventArgs e)
         {
-            _salaryOk = TextBoxValidatingWithErrorProvider(SalaryBox);
             AllFieldsOk();
         }
 
@@ -423,19 +399,28 @@ namespace Lab_4
         /// </summary>
         private void AllFieldsOk()
         {
+            List<MaskedTextBox> textBoxListTmp = null;
             if (FullTimeRadioButton.Checked)
             {
-                ButtonCount.Enabled = _lastNameOk && _firstNameOk && _patroOk
-                    && _shiftOk && _salaryOk && _rateOk;
+               textBoxListTmp = _fullTimeTextBox;
             }
             else if (PartTimeRadioButton.Checked)
             {
-                ButtonCount.Enabled = _lastNameOk && _firstNameOk && _patroOk
-                    && _shiftOk  && _rateOk;
+                textBoxListTmp = _partTimeTextBox;
             }
+
+            var tmpBolean = true;
+            foreach(var textBox in textBoxListTmp)
+            {
+                tmpBolean = tmpBolean && TextBoxValidatingWithErrorProvider(textBox);
+            }
+            ButtonCount.Enabled = tmpBolean;
         }
 
-       
+        private void HoursBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
                
         /// <summary>
         /// Ставить курсор в начале 

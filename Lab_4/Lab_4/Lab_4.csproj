@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RandomData.cs" />
     <Compile Include="WageForm.cs">
       <SubType>Form</SubType>
     </Compile>

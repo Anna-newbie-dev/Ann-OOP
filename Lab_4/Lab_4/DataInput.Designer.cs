@@ -303,6 +303,7 @@
             this.HoursBox.PromptChar = ' ';
             this.HoursBox.Size = new System.Drawing.Size(166, 22);
             this.HoursBox.TabIndex = 31;
+            this.HoursBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.HoursBox_MaskInputRejected);
             this.HoursBox.Enter += new System.EventHandler(this.HoursBox_Enter);
             this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.HoursBox_KeyPress);
             this.HoursBox.Validating += new System.ComponentModel.CancelEventHandler(this.HoursBox_Validating);

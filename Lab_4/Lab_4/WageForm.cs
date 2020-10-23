@@ -12,6 +12,7 @@ using System.IO;
 using WageLib;
 using PersonsLib;
 
+
 namespace Lab_4
 {
     /// <summary>
@@ -23,32 +24,41 @@ namespace Lab_4
         /// Таблица для хранения данных
         /// </summary>
         public DataTable dataTable = new DataTable();
+
         public DataInput dataInput;
-        //Person newPerson = new Person();
 
         /// <summary>
         /// Инициализация основной формы
         /// </summary>
         public WageForm()
-        {           
+        {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            dataTable.Columns.AddRange(new DataColumn[5]
+#if DEBUG
+
+            randomButton.Visible = true;
+            randomButton.Enabled = true;
+#else
+            randomButton.Visible = false;
+            randomButton.Enabled = false;
+#endif
+
+            dataTable.Columns.AddRange(new DataColumn[4]
                 {
-                new DataColumn("№"),
+                //new DataColumn("№"),
                 new DataColumn("Фамилия"), new DataColumn("Имя"),
                 new DataColumn("Отчество"),
                 new DataColumn("Сумма к выплате")
                 });
-            dataTable.Columns["№"].AutoIncrement = true;
-            dataTable.Columns["№"].AutoIncrementSeed = 1;
-            dataTable.Columns["№"].AutoIncrementStep = 1;
+            //dataTable.Columns["№"].AutoIncrement = true;
+            //dataTable.Columns["№"].AutoIncrementSeed = 1;
+            //dataTable.Columns["№"].AutoIncrementStep = 1;
             dataGridView.DataSource = dataTable;
         }
 
-        
+
         /// <summary>
         /// Загрузка основной формы
         /// </summary>
@@ -58,14 +68,14 @@ namespace Lab_4
         {
             SearchBox_SetText();
         }
-        
+
         /// <summary>
         /// Сохранение таблицы
         /// в файл
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void saveFileButton_Click(object sender, 
+        private void saveFileButton_Click(object sender,
             EventArgs e)
         {
             string path = Environment.GetFolderPath(
@@ -93,7 +103,7 @@ namespace Lab_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void clearReportButton_Click(object sender, 
+        private void clearReportButton_Click(object sender,
             EventArgs e)
         {
             dataTable.Clear();
@@ -130,11 +140,11 @@ namespace Lab_4
             {
                 for (int i = 0; i < row.Cells.Count; i++)
                 {
-                    if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().Contains(searchQuery))
+                    if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().
+                        Contains(searchQuery))
                     {
                         int rowIndex = row.Index;
                         dataGridView.Rows[rowIndex].Selected = true;
-
                         valueResult = true;
                         break;
                     }
@@ -166,16 +176,10 @@ namespace Lab_4
                         using (var fileStream = new FileStream(filePath,
                         FileMode.OpenOrCreate))
                         {
-                            // Для Ани:
-                            // У тебя тут все правильно было почти, ты чуть-чуть не дошла
-                            // Ты сохраняешь данные с помощью бинарной сериализации с помощью класса DataTable
-                            // Соответственно загружать надо точно также, просто следует указать в скобках тот же класс (DataTable)
-                            // И сказать, что эта таблица является источником для твоей таблицы на форме - DataSource
                             dataGridView.DataSource = (DataTable)formatter.
                                 Deserialize(fileStream);
                         }
                     }
-
                     catch
                     {
                         MessageBox.Show("Файл поврежден, " +
@@ -220,9 +224,74 @@ namespace Lab_4
             SearchBox.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// Удаление выбранной записи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            int counter = 0;
+            if (dataGridView.SelectedRows.Count > dataTable.Rows.Count)
+            {
+                counter = dataTable.Rows.Count;
+                dataGridView.Rows.Clear();
+            }
+
+            foreach (DataGridViewRow delRow
+                in dataGridView.SelectedRows)
+            {
+                counter++;
+                dataGridView.Rows.Remove(delRow);
+            }
+        }
+
+        /// <summary>
+        /// Добавление произвольных сущностей
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomButton_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            Person newPerson = new Person();
+            newPerson = RandomData.PickPerson();
             
+            var randomNumber = rnd.Next(1, 2);
+            switch (randomNumber)
+            {
+                case 1:
+                    {
+                        FullTime fullTime = new FullTime();
+                        fullTime.Shifts = RandomData.GenerateNumber();
+                        fullTime.Salary = RandomData.GenerateNumber();
+                        fullTime.Rate = RandomData.GenerateNumber();
+
+                        dataTable.Rows.Add(
+                        //null,
+                        newPerson.LastName,
+                        newPerson.FirstName,
+                        newPerson.Patronymic,
+                        fullTime.CalculateWage()); 
+                        
+                        break;
+                    }
+                case 2:
+                    {
+                        PartTime partTime = new PartTime();
+                        partTime.Shifts = RandomData.GenerateNumber();
+                        partTime.Salary = RandomData.GenerateNumber();
+ 
+                        dataTable.Rows.Add(
+                        //null,
+                        newPerson.LastName,
+                        newPerson.FirstName,
+                        newPerson.LastName,
+                        partTime.CalculateWage());
+
+                        break;
+                    }
+            }
         }
     }
 }
