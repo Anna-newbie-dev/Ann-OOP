@@ -12,6 +12,7 @@ namespace Lab_4
     /// </summary>
     public static class RandomData
     {
+        //TODO: XML
         private static Random _random = new Random();
 
         private static Person[] _source = new Person[]

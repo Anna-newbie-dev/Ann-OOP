@@ -6,8 +6,6 @@
     /// </summary>
     public class PartTime : IWage
     {
-        //TODO:Класс Checker был сделан статическим
-        
         #region Constants
 
         private int MAXSHIFTS = 500;

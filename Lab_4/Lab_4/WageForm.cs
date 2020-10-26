@@ -20,11 +20,11 @@ namespace Lab_4
     /// </summary>
     public partial class WageForm : Form
     {
-        //TODO: RSDN
+        //TODO: RSDN + свойства
         /// <summary>
         /// Таблица для хранения данных
         /// </summary>
-        public DataTable dataTable = new DataTable();
+        public DataTable DataTable { get; set; } = new DataTable();
 
 
         /// <summary>
@@ -47,7 +47,8 @@ namespace Lab_4
 
             dataTable.Columns.AddRange(new DataColumn[4]
             {
-                new DataColumn("Фамилия"), new DataColumn("Имя"),
+                new DataColumn("Фамилия"), 
+                new DataColumn("Имя"),
                 new DataColumn("Отчество"),
                 new DataColumn("Сумма к выплате")
             });
@@ -88,7 +89,7 @@ namespace Lab_4
                     fileSave, FileMode.OpenOrCreate))
                 {
                     formatter.Serialize(fileStream, dataTable);
-                    MessageBox.Show("File is saved successfully!");
+                    MessageBox.Show("Файл был сохранен.");
                 }
             }
         }
@@ -251,12 +252,14 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN
-            Random random = new Random();
+            /// <summary>
+            /// Экземпляр класса для
+            /// выбора произвольных записей 
+            Random Random = new Random();
             Person newPerson = new Person();
             newPerson = RandomData.PickPerson();
             
-            var randomNumber = random.Next(1, 2);
+            var randomNumber = Random.Next(1, 2);
             switch (randomNumber)
             {
                 case 1:

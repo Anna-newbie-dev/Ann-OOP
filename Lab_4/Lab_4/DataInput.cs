@@ -78,22 +78,18 @@ namespace Lab_4
         private bool TextBoxValidatingWithErrorProvider
             (MaskedTextBox textBox)
         {
-            var FieldIsOk = false;
-
             CancelEventArgs e = new CancelEventArgs();
             if (string.IsNullOrEmpty(textBox.Text))
             {
                 errorProvider1.SetError(textBox, "Строка не может " +
                     "быть пустой!");
-                FieldIsOk = false;
                 e.Cancel = true;
-                return FieldIsOk;
+                return false;
             }
             else
             {
                 errorProvider1.SetError(textBox, string.Empty);
-                FieldIsOk = true;
-                return FieldIsOk;
+                return true;
             }
         }
 
@@ -355,11 +351,17 @@ namespace Lab_4
         {
             foreach (Control c in parent.Controls)
             {
+                //TODO(!): Скобочки
                 if (c.GetType() == typeof(MaskedTextBox))
+                {
                     c.Text = string.Empty;
+                }
+                    
 
                 if (c.GetType() == typeof(GroupBox))
+                {
                     CleanAllTextBoxesIn(c);
+                }   
             }
         }
 
