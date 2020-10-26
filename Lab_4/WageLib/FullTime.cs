@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WageLib
+﻿namespace WageLib
 {
     /// <summary>
     /// Оплата труда по

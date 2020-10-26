@@ -98,7 +98,7 @@
       <Name>PersonsLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\WageLib\WageLib.csproj">
-      <Project>{83c77c9c-677c-4fb8-a5ae-32d40185d320}</Project>
+      <Project>{6a3f200b-71b4-4082-9192-e4867389be6e}</Project>
       <Name>WageLib</Name>
     </ProjectReference>
   </ItemGroup>

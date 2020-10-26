@@ -140,7 +140,7 @@ namespace Lab_4
                     ReadAndCountPartTime();
                 }
 
-                ((WageForm)this.Tag).dataTable.Rows.Add(
+                ((WageForm)this.Tag).DataTable.Rows.Add(
                     newPerson.LastName,
                     newPerson.FirstName,
                     newPerson.LastName,

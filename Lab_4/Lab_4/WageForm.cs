@@ -45,14 +45,14 @@ namespace Lab_4
             randomButton.Enabled = false;
 #endif
 
-            dataTable.Columns.AddRange(new DataColumn[4]
+            DataTable.Columns.AddRange(new DataColumn[4]
             {
                 new DataColumn("Фамилия"), 
                 new DataColumn("Имя"),
                 new DataColumn("Отчество"),
                 new DataColumn("Сумма к выплате")
             });
-            dataGridView.DataSource = dataTable;
+            dataGridView.DataSource = DataTable;
         }
 
 
@@ -88,7 +88,7 @@ namespace Lab_4
                 using (var fileStream = new FileStream(
                     fileSave, FileMode.OpenOrCreate))
                 {
-                    formatter.Serialize(fileStream, dataTable);
+                    formatter.Serialize(fileStream, DataTable);
                     MessageBox.Show("Файл был сохранен.");
                 }
             }
@@ -102,7 +102,7 @@ namespace Lab_4
         private void clearReportButton_Click(object sender,
             EventArgs e)
         {
-            dataTable.Clear();
+            DataTable.Clear();
         }
 
         /// <summary>
@@ -231,9 +231,9 @@ namespace Lab_4
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             int counter = 0;
-            if (dataGridView.SelectedRows.Count > dataTable.Rows.Count)
+            if (dataGridView.SelectedRows.Count > DataTable.Rows.Count)
             {
-                counter = dataTable.Rows.Count;
+                counter = DataTable.Rows.Count;
                 dataGridView.Rows.Clear();
             }
 
@@ -252,9 +252,7 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            /// <summary>
-            /// Экземпляр класса для
-            /// выбора произвольных записей 
+            //TODO:  RSDN
             Random Random = new Random();
             Person newPerson = new Person();
             newPerson = RandomData.PickPerson();
@@ -269,7 +267,7 @@ namespace Lab_4
                         fullTime.Salary = RandomData.GenerateNumber();
                         fullTime.Rate = RandomData.GenerateNumber();
 
-                        dataTable.Rows.Add(
+                        DataTable.Rows.Add(
                         newPerson.LastName,
                         newPerson.FirstName,
                         newPerson.Patronymic,
@@ -282,8 +280,8 @@ namespace Lab_4
                         PartTime partTime = new PartTime();
                         partTime.Shifts = RandomData.GenerateNumber();
                         partTime.Salary = RandomData.GenerateNumber();
- 
-                        dataTable.Rows.Add(
+
+                        DataTable.Rows.Add(
                         newPerson.LastName,
                         newPerson.FirstName,
                         newPerson.LastName,
