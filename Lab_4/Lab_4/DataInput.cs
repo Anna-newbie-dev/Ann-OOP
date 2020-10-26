@@ -14,9 +14,16 @@ namespace Lab_4
     /// </summary>
     public partial class DataInput : Form
     {
-        //TODO: RSDN
+        /// <summary>
+        /// Перечень текстовых полей, необходимых
+        /// для расчета ЗП по повременной системе оплаты труда
+        /// </summary>
         private readonly List<MaskedTextBox> _partTimeTextBox;
 
+        /// <summary>
+        /// Перечень текстовых полей, необходимых
+        /// для расчета ЗП по окладу и ставке
+        /// </summary>
         private readonly List<MaskedTextBox> _fullTimeTextBox;
 
         /// <summary>

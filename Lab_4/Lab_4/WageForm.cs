@@ -26,8 +26,6 @@ namespace Lab_4
         /// </summary>
         public DataTable dataTable = new DataTable();
 
-        //TODO: RSDN
-        public DataInput dataInput;
 
         /// <summary>
         /// Инициализация основной формы
@@ -49,14 +47,10 @@ namespace Lab_4
 
             dataTable.Columns.AddRange(new DataColumn[4]
             {
-                //new DataColumn("№"),
                 new DataColumn("Фамилия"), new DataColumn("Имя"),
                 new DataColumn("Отчество"),
                 new DataColumn("Сумма к выплате")
             });
-            //dataTable.Columns["№"].AutoIncrement = true;
-            //dataTable.Columns["№"].AutoIncrementSeed = 1;
-            //dataTable.Columns["№"].AutoIncrementStep = 1;
             dataGridView.DataSource = dataTable;
         }
 
@@ -72,8 +66,7 @@ namespace Lab_4
         }
 
         /// <summary>
-        /// Сохранение таблицы
-        /// в файл
+        /// Сохранение таблицы в файл
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -119,7 +112,7 @@ namespace Lab_4
         private void AddNewEntryButton_Click(object sender,
             EventArgs e)
         {
-            dataInput = new DataInput();
+            DataInput dataInput = new DataInput();
             dataInput.Tag = this;
             dataInput.Show();
         }
@@ -217,7 +210,7 @@ namespace Lab_4
         }
 
         /// <summary>
-        /// 
+        /// Событие
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

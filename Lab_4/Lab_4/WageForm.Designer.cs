@@ -179,6 +179,7 @@
             this.Controls.Add(this.AddNewEntryButton);
             this.Controls.Add(this.programName);
             this.Controls.Add(this.groupBox5);
+            this.MaximumSize = new System.Drawing.Size(645, 513);
             this.Name = "WageForm";
             this.Text = "Simple Wage Calculator (alpha version)";
             this.Load += new System.EventHandler(this.WageForm_Load);

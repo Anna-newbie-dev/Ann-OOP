@@ -357,6 +357,7 @@
             this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.GroupBox1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(666, 501);
             this.Name = "DataInput";
             this.Text = "Ввод данных работника";
             this.Load += new System.EventHandler(this.DataInput_Load);
