@@ -20,7 +20,9 @@ namespace Lab_4
     /// </summary>
     public partial class WageForm : Form
     {
-        //TODO: RSDN + свойства
+        //!!TODO: RSDN + свойства
+        //Пока наложены ограничения на тип данных
+        //в поля таблицы
         /// <summary>
         /// Таблица для хранения данных
         /// </summary>
@@ -47,10 +49,10 @@ namespace Lab_4
 
             DataTable.Columns.AddRange(new DataColumn[4]
             {
-                new DataColumn("Фамилия"), 
-                new DataColumn("Имя"),
-                new DataColumn("Отчество"),
-                new DataColumn("Сумма к выплате")
+                new DataColumn("Фамилия",typeof(string)), 
+                new DataColumn("Имя", typeof(string)),
+                new DataColumn("Отчество",typeof(string)),
+                new DataColumn("Сумма к выплате", typeof(double))
             });
             dataGridView.DataSource = DataTable;
         }
@@ -115,7 +117,7 @@ namespace Lab_4
         {
             DataInput dataInput = new DataInput();
             dataInput.Tag = this;
-            dataInput.Show();
+            dataInput.ShowDialog(); // блокирование основной формы
         }
 
         /// <summary>
@@ -207,7 +209,6 @@ namespace Lab_4
         {
             SearchBox.Text = "Найти";
             SearchBox.ForeColor = Color.Gray;
-            //SearchBox.Font.Italic
         }
 
         /// <summary>
@@ -230,18 +231,26 @@ namespace Lab_4
         /// <param name="e"></param>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            int counter = 0;
-            if (dataGridView.SelectedRows.Count > DataTable.Rows.Count)
+            try
             {
-                counter = DataTable.Rows.Count;
-                dataGridView.Rows.Clear();
-            }
+                int counter = 0;
+                if (dataGridView.SelectedRows.Count > DataTable.Rows.Count)
+                {
+                    counter = DataTable.Rows.Count;
+                    dataGridView.Rows.Clear();
+                }
 
-            foreach (DataGridViewRow delRow
-                in dataGridView.SelectedRows)
+                foreach (DataGridViewRow delRow
+                    in dataGridView.SelectedRows)
+                {
+                    counter++;
+                    dataGridView.Rows.Remove(delRow);
+                }
+            }
+			// обработка исключений при удалении записей из DataTable
+            catch (Exception exception)
             {
-                counter++;
-                dataGridView.Rows.Remove(delRow);
+                MessageBox.Show(exception.Message);
             }
         }
 
@@ -252,8 +261,18 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            //TODO:  RSDN
+            //TODO: RSDN (!)
+			/// <summary>
+            /// Экземпляр класса для
+            /// выбора произвольных записей 
+            /// </summary>
             Random Random = new Random();
+
+            /// <summary>
+            /// Экземпляр класса Person
+            /// для хранения произвольным образом
+            /// выбранной записи
+            /// </summary>
             Person newPerson = new Person();
             newPerson = RandomData.PickPerson();
             
