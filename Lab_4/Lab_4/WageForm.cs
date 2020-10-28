@@ -189,7 +189,8 @@ namespace Lab_4
         }
 
         /// <summary>
-        /// 
+        /// Отображение текста по умолчанию
+		/// при потере фокуса SearchBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

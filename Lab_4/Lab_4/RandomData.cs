@@ -12,7 +12,11 @@ namespace Lab_4
     /// </summary>
     public static class RandomData
     {
-        //TODO: XML
+        //TODO: XML (!)
+		/// <summary>
+        /// Экземпляр класса Random для выбора
+		///  произвольной записи из массива персон
+        /// </summary>
         private static Random _random = new Random();
 
         private static Person[] _source = new Person[]
