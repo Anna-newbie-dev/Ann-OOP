@@ -213,7 +213,7 @@ namespace Lab_4
         }
 
         /// <summary>
-        /// Событие
+        /// Событие переносе фокуса на SearchBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
