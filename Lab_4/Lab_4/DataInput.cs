@@ -112,24 +112,19 @@ namespace Lab_4
         private bool TextBoxValidatingWithErrorProvider
             (MaskedTextBox textBox)
         {
-            //if(textBox.fo)
-            //{
-                CancelEventArgs e = new CancelEventArgs();
-                if (string.IsNullOrEmpty(textBox.Text))
-                {
-                    errorProvider1.SetError(textBox, "Строка не может " +
-                        "быть пустой!");
-                    e.Cancel = true;
-                    return false;
-                }
-                else
-                {
-                    errorProvider1.SetError(textBox, string.Empty);
-                    return true;
-                }
-            //}
-            //return false;
-            
+            CancelEventArgs e = new CancelEventArgs();
+            if (textBox.Focused && string.IsNullOrEmpty(textBox.Text))
+            {
+                errorProvider1.SetError(textBox, "Строка не может " +
+                    "быть пустой!");
+                e.Cancel = true;
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(textBox, string.Empty);
+                return true;
+            }
         }
 
         /// <summary>
