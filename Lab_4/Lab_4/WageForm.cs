@@ -20,15 +20,30 @@ namespace Lab_4
     /// </summary>
     public partial class WageForm : Form
     {
-        //!!TODO: RSDN + свойства
-        //Пока наложены ограничения на тип данных
-        //в поля таблицы
+        private DataTable _dataTable = new DataTable();
+
+
         /// <summary>
         /// Таблица для хранения данных
         /// </summary>
-        public DataTable DataTable { get; set; } = new DataTable();
+        public DataTable DataTable 
+        {
+            get
+            {
+                return _dataTable;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new NullReferenceException($"{nameof(DataTable)} " +
+                        $"не может являться пустым.");
+                }
 
-
+                _dataTable = value;
+            }
+        }
+        
         /// <summary>
         /// Инициализация основной формы
         /// </summary>
@@ -117,40 +132,9 @@ namespace Lab_4
         {
             DataInput dataInput = new DataInput();
             dataInput.Tag = this;
-            dataInput.ShowDialog(); // блокирование основной формы
-        }
-
-        /// <summary>
-        /// Поиск по содержимому DataGridView
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (SearchBox.Text == "")
-            {
-                dataGridView.ClearSelection();
-            }
-
-            dataGridView.ClearSelection();
-            string searchQuery = SearchBox.Text;
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                for (int i = 0; i < row.Cells.Count; i++)
-                {
-                    if (row.Cells[i].Value != null && 
-                        row.Cells[i].Value.ToString().ToLower().Contains(searchQuery.ToLower()))
-                    {
-                        int rowIndex = row.Index;
-                        dataGridView.Rows[rowIndex].Selected = true;
-                        break;
-                    }
-
-                }
-            }
-        }
+            //вызов формы для ввода данных с блокированием главной
+            dataInput.ShowDialog();
+        }      
 
         /// <summary>
         /// Загрузка информации в таблицу из файла
@@ -190,7 +174,7 @@ namespace Lab_4
 
         /// <summary>
         /// Отображение текста по умолчанию
-		/// при потере фокуса SearchBox
+		/// при потере фокуса SearchBox 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -210,17 +194,22 @@ namespace Lab_4
         {
             SearchBox.Text = "Найти";
             SearchBox.ForeColor = Color.Gray;
+            //SearchBox.Font.Italic
         }
 
         /// <summary>
-        /// Событие переносе фокуса на SearchBox
+        /// Событие
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SearchBox_Enter(object sender, EventArgs e)
         {
+
             if (SearchBox.ForeColor == Color.Black)
+            {
+                SearchInDatatable();
                 return;
+            }
             SearchBox.Text = "";
             SearchBox.ForeColor = Color.Black;
         }
@@ -248,7 +237,6 @@ namespace Lab_4
                     dataGridView.Rows.Remove(delRow);
                 }
             }
-			// обработка исключений при удалении записей из DataTable
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
@@ -262,8 +250,8 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN (!)
-			/// <summary>
+            //TODO: RSDN
+            /// <summary>
             /// Экземпляр класса для
             /// выбора произвольных записей 
             /// </summary>
@@ -274,12 +262,12 @@ namespace Lab_4
             /// для хранения произвольным образом
             /// выбранной записи
             /// </summary>
-            Person newPerson = new Person();
-            newPerson = RandomData.PickPerson();
+            Person newPerson = RandomData.PickPerson();
             
             var randomNumber = Random.Next(1, 2);
             switch (randomNumber)
             {
+                //TODO: RSDN
                 case 1:
                     {
                         FullTime fullTime = new FullTime();
@@ -309,6 +297,48 @@ namespace Lab_4
 
                         break;
                     }
+            }
+        }
+
+        /// <summary>
+        /// Поиск по содержимому DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (SearchBox.Text == string.Empty)
+            {
+                dataGridView.ClearSelection();
+            }
+            else 
+            {
+                SearchInDatatable();
+            }
+        }
+
+        /// <summary>
+        /// Поиск записи в таблице
+        /// по вводимой строке
+        /// </summary>
+        private void SearchInDatatable()
+        {
+            dataGridView.ClearSelection();
+            string searchQuery = SearchBox.Text;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    if (row.Cells[i].Value != null &&
+                        row.Cells[i].Value.ToString().ToLower().Contains(searchQuery.ToLower()))
+                    {
+                        int rowIndex = row.Index;
+                        dataGridView.Rows[rowIndex].Selected = true;
+                        break;
+                    }
+                }
             }
         }
     }

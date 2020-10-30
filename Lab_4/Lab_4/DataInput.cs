@@ -66,9 +66,43 @@ namespace Lab_4
             PartTimeRadioButton.Checked = true;
             ButtonCount.Enabled = false;
         }
-      
+
         #region Валидация данных
-                
+
+        /// <summary>
+        /// Проверка текстовых полей
+        /// по мере ввода
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            AllFieldsOk();
+        }
+
+        /// <summary>
+        /// Все ли поля заполнены верно
+        /// </summary>
+        private void AllFieldsOk()
+        {
+            List<MaskedTextBox> textBoxListTmp = null;
+            if (FullTimeRadioButton.Checked)
+            {
+                textBoxListTmp = _fullTimeTextBox;
+            }
+            else if (PartTimeRadioButton.Checked)
+            {
+                textBoxListTmp = _partTimeTextBox;
+            }
+
+            var tmpBoolean = true;
+            foreach (var textBox in textBoxListTmp)
+            {
+                tmpBoolean = tmpBoolean && TextBoxValidatingWithErrorProvider(textBox);
+            }
+            ButtonCount.Enabled = tmpBoolean;
+        }
+
         /// <summary>
         /// Проверка вводимых полей
         /// при помощи ErrorProvider
@@ -78,19 +112,24 @@ namespace Lab_4
         private bool TextBoxValidatingWithErrorProvider
             (MaskedTextBox textBox)
         {
-            CancelEventArgs e = new CancelEventArgs();
-            if (string.IsNullOrEmpty(textBox.Text))
-            {
-                errorProvider1.SetError(textBox, "Строка не может " +
-                    "быть пустой!");
-                e.Cancel = true;
-                return false;
-            }
-            else
-            {
-                errorProvider1.SetError(textBox, string.Empty);
-                return true;
-            }
+            //if(textBox.fo)
+            //{
+                CancelEventArgs e = new CancelEventArgs();
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    errorProvider1.SetError(textBox, "Строка не может " +
+                        "быть пустой!");
+                    e.Cancel = true;
+                    return false;
+                }
+                else
+                {
+                    errorProvider1.SetError(textBox, string.Empty);
+                    return true;
+                }
+            //}
+            //return false;
+            
         }
 
         /// <summary>
@@ -247,17 +286,7 @@ namespace Lab_4
         #endregion
 
         #region Всякая обработка с красотой
-         /// <summary>
-        /// Проверка поля Фамилия
-        /// по мере ввода
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TextBox_Validating(object sender, CancelEventArgs e)
-        {
-            AllFieldsOk();
-        }
-
+           
         /// <summary>
         /// Игнорирование пробелов
         /// при вводе текста
@@ -267,6 +296,41 @@ namespace Lab_4
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             IgnoreSpaces(e);
+        }
+
+        /// <summary>
+        /// Разрешает ввод чисел и разделителя
+        /// дробной и целой части
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxForWage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var tempBox = (MaskedTextBox)sender;
+            char ch = e.KeyChar;
+            if (ch == 46 && ((tempBox.Text.IndexOf('.') != -1) ||
+                (tempBox.Text.IndexOf(',') != -1)))
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            //{
+            //    e.Handled = true;
+            //}
+
+            //// If you want, you can allow decimal (float) numbers
+            //if ((e.KeyChar == '.') && (tempBox.Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
+
+            IgnoreSpaces(e);
+            
         }
 
         /// <summary>
@@ -281,34 +345,18 @@ namespace Lab_4
             }
         }
 
+        //TODO: XML(!)
+        /// <summary>
+        /// При принятии фокуса перенести каретку
+        /// в начало строки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox_Enter(object sender, EventArgs e)
         {
             MoveCursorToTheStartPos((MaskedTextBox)sender);
         }
-        
-        /// <summary>
-        /// Все ли поля заполнены верно
-        /// </summary>
-        private void AllFieldsOk()
-        {
-            List<MaskedTextBox> textBoxListTmp = null;
-            if (FullTimeRadioButton.Checked)
-            {
-               textBoxListTmp = _fullTimeTextBox;
-            }
-            else if (PartTimeRadioButton.Checked)
-            {
-                textBoxListTmp = _partTimeTextBox;
-            }
 
-            var tmpBolean = true;
-            foreach(var textBox in textBoxListTmp)
-            {
-                tmpBolean = tmpBolean && TextBoxValidatingWithErrorProvider(textBox);
-            }
-            ButtonCount.Enabled = tmpBolean;
-        }
-               
         /// <summary>
         /// Ставить курсор в начале 
         /// при активации элемента
@@ -349,19 +397,21 @@ namespace Lab_4
         /// <param name="parent"></param>
         private static void CleanAllTextBoxesIn(Control parent)
         {
-            foreach (Control c in parent.Controls)
+            foreach (Control control in parent.Controls)
             {
-                //TODO(!): Скобочки
-                if (c.GetType() == typeof(MaskedTextBox))
+                switch (control)
                 {
-                    c.Text = string.Empty;
+                    case MaskedTextBox maskedTextBox:
+                    {
+                        control.Text = string.Empty;
+                        break;
+                    }
+                    case GroupBox groupBox:
+                    {
+                        CleanAllTextBoxesIn(groupBox);
+                        break;
+                    }
                 }
-                    
-
-                if (c.GetType() == typeof(GroupBox))
-                {
-                    CleanAllTextBoxesIn(c);
-                }   
             }
         }
 
@@ -398,5 +448,7 @@ namespace Lab_4
         #endregion
 
         #endregion
+
+        
     }
 }

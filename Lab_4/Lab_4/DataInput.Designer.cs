@@ -107,7 +107,7 @@
             this.GroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.GroupBox1.Location = new System.Drawing.Point(14, 20);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(627, 330);
+            this.GroupBox1.Size = new System.Drawing.Size(645, 330);
             this.GroupBox1.TabIndex = 19;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Введите исходные данные";
@@ -120,9 +120,9 @@
             this.PatroBox.PromptChar = ' ';
             this.PatroBox.Size = new System.Drawing.Size(203, 22);
             this.PatroBox.TabIndex = 30;
+            this.PatroBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.PatroBox.Enter += new System.EventHandler(this.TextBox_Enter);
             this.PatroBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            this.PatroBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // FirstNameBox
             // 
@@ -132,9 +132,9 @@
             this.FirstNameBox.PromptChar = ' ';
             this.FirstNameBox.Size = new System.Drawing.Size(158, 22);
             this.FirstNameBox.TabIndex = 29;
+            this.FirstNameBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.FirstNameBox.Enter += new System.EventHandler(this.TextBox_Enter);
             this.FirstNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            this.FirstNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // LastNameBox
             // 
@@ -144,9 +144,9 @@
             this.LastNameBox.PromptChar = ' ';
             this.LastNameBox.Size = new System.Drawing.Size(159, 22);
             this.LastNameBox.TabIndex = 28;
+            this.LastNameBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.LastNameBox.Enter += new System.EventHandler(this.TextBox_Enter);
             this.LastNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            this.LastNameBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
             // 
             // label1
             // 
@@ -204,7 +204,7 @@
             this.GroupBox2.Controls.Add(this.labelSalary);
             this.GroupBox2.Location = new System.Drawing.Point(6, 121);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(615, 198);
+            this.GroupBox2.Size = new System.Drawing.Size(621, 198);
             this.GroupBox2.TabIndex = 13;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = " Данные для расчета суммы";
@@ -212,14 +212,13 @@
             // SalaryBox
             // 
             this.SalaryBox.Location = new System.Drawing.Point(133, 104);
-            this.SalaryBox.Mask = "000000000";
             this.SalaryBox.Name = "SalaryBox";
             this.SalaryBox.PromptChar = ' ';
             this.SalaryBox.Size = new System.Drawing.Size(166, 22);
             this.SalaryBox.TabIndex = 33;
+            this.SalaryBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.SalaryBox.Enter += new System.EventHandler(this.TextBox_Enter);
-            this.SalaryBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            this.SalaryBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
+            this.SalaryBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxForWage_KeyPress);
             // 
             // label5
             // 
@@ -236,14 +235,13 @@
             // RateBox
             // 
             this.RateBox.Location = new System.Drawing.Point(133, 68);
-            this.RateBox.Mask = "00000000";
             this.RateBox.Name = "RateBox";
             this.RateBox.PromptChar = ' ';
             this.RateBox.Size = new System.Drawing.Size(166, 22);
             this.RateBox.TabIndex = 32;
+            this.RateBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.RateBox.Enter += new System.EventHandler(this.TextBox_Enter);
-            this.RateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            this.RateBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
+            this.RateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxForWage_KeyPress);
             // 
             // label4
             // 
@@ -298,14 +296,13 @@
             // HoursBox
             // 
             this.HoursBox.Location = new System.Drawing.Point(133, 30);
-            this.HoursBox.Mask = "00000000";
             this.HoursBox.Name = "HoursBox";
             this.HoursBox.PromptChar = ' ';
             this.HoursBox.Size = new System.Drawing.Size(166, 22);
             this.HoursBox.TabIndex = 31;
+            this.HoursBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.HoursBox.Enter += new System.EventHandler(this.TextBox_Enter);
-            this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            this.HoursBox.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Validating);
+            this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxForWage_KeyPress);
             // 
             // labelHours
             // 
@@ -344,20 +341,20 @@
             // outputListBox
             // 
             this.outputListBox.FormattingEnabled = true;
-            this.outputListBox.Location = new System.Drawing.Point(14, 356);
+            this.outputListBox.Location = new System.Drawing.Point(14, 368);
             this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(627, 95);
+            this.outputListBox.Size = new System.Drawing.Size(645, 69);
             this.outputListBox.TabIndex = 25;
             // 
             // DataInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 462);
+            this.ClientSize = new System.Drawing.Size(671, 450);
             this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.GroupBox1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(666, 501);
+            this.MaximumSize = new System.Drawing.Size(687, 489);
             this.Name = "DataInput";
             this.Text = "Ввод данных работника";
             this.Load += new System.EventHandler(this.DataInput_Load);

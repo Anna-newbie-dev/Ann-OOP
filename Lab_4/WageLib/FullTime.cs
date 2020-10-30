@@ -1,4 +1,6 @@
-﻿namespace WageLib
+﻿using System;
+
+namespace WageLib
 {
     /// <summary>
     /// Оплата труда по
@@ -52,7 +54,7 @@
         {
             get => _salary;
             set =>
-                _salary = Checker.AutoPropertyCheck(value, MAXSALARY, "Оклад");
+                _salary = Checker.AutoPropertyCheck(value, MAXSALARY, "Ставка");
         }
 
         /// <summary>
@@ -61,7 +63,7 @@
         public double Rate
         {
             get => _rate;
-            set => _rate = Checker.AutoPropertyCheck(value, MAXRATE, "Ставка");
+            set => _rate = Checker.AutoPropertyCheck(value, MAXRATE, "Оклад");
         }
         #endregion
 
