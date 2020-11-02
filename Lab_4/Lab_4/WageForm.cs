@@ -204,12 +204,12 @@ namespace Lab_4
         /// <param name="e"></param>
         private void SearchBox_Enter(object sender, EventArgs e)
         {
-
             if (SearchBox.ForeColor == Color.Black)
             {
                 SearchInDatatable();
                 return;
             }
+
             SearchBox.Text = "";
             SearchBox.ForeColor = Color.Black;
         }
@@ -250,12 +250,12 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN
+            //TODO: RSDN(!)
             /// <summary>
             /// Экземпляр класса для
             /// выбора произвольных записей 
             /// </summary>
-            Random Random = new Random();
+            Random random = new Random();
 
             /// <summary>
             /// Экземпляр класса Person
@@ -264,39 +264,38 @@ namespace Lab_4
             /// </summary>
             Person newPerson = RandomData.PickPerson();
             
-            var randomNumber = Random.Next(1, 2);
+            var randomNumber = random.Next(1, 2);
             switch (randomNumber)
             {
-                //TODO: RSDN
                 case 1:
-                    {
-                        FullTime fullTime = new FullTime();
-                        fullTime.Shifts = RandomData.GenerateNumber();
-                        fullTime.Salary = RandomData.GenerateNumber();
-                        fullTime.Rate = RandomData.GenerateNumber();
+                {
+                    FullTime fullTime = new FullTime();
+                    fullTime.Shifts = RandomData.GenerateNumber();
+                    fullTime.Salary = RandomData.GenerateNumber();
+                    fullTime.Rate = RandomData.GenerateNumber();
 
-                        DataTable.Rows.Add(
-                        newPerson.LastName,
-                        newPerson.FirstName,
-                        newPerson.Patronymic,
-                        fullTime.CalculateWage()); 
-                        
-                        break;
-                    }
+                    DataTable.Rows.Add(
+                    newPerson.LastName,
+                    newPerson.FirstName,
+                    newPerson.Patronymic,
+                    fullTime.CalculateWage()); 
+                    
+                    break;
+                }
                 case 2:
-                    {
-                        PartTime partTime = new PartTime();
-                        partTime.Shifts = RandomData.GenerateNumber();
-                        partTime.Salary = RandomData.GenerateNumber();
+                {
+                    PartTime partTime = new PartTime();
+                    partTime.Shifts = RandomData.GenerateNumber();
+                    partTime.Salary = RandomData.GenerateNumber();
 
-                        DataTable.Rows.Add(
-                        newPerson.LastName,
-                        newPerson.FirstName,
-                        newPerson.LastName,
-                        partTime.CalculateWage());
+                    DataTable.Rows.Add(
+                    newPerson.LastName,
+                    newPerson.FirstName,
+                    newPerson.LastName,
+                    partTime.CalculateWage());
 
-                        break;
-                    }
+                    break;
+                }
             }
         }
 

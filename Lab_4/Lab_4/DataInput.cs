@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using WageLib;
 using PersonsLib;
 using System.ComponentModel;
-
+using System.Globalization;
 
 namespace Lab_4
 {
@@ -25,6 +25,16 @@ namespace Lab_4
         /// для расчета ЗП по окладу и ставке
         /// </summary>
         private readonly List<MaskedTextBox> _fullTimeTextBox;
+
+        /// <summary>
+        /// ASCII код точки
+        /// </summary>
+        private int DOT = 46;
+
+        /// <summary>
+        /// ASCII код пробела назад
+        /// </summary>
+        private int BACKSPACE = 8;
 
         /// <summary>
         /// Форма ввода данных
@@ -113,13 +123,14 @@ namespace Lab_4
             (MaskedTextBox textBox)
         {
             CancelEventArgs e = new CancelEventArgs();
-            if (textBox.Focused && string.IsNullOrEmpty(textBox.Text))
+            if (string.IsNullOrEmpty(textBox.Text))
             {
                 errorProvider1.SetError(textBox, "Строка не может " +
                     "быть пустой!");
                 e.Cancel = true;
                 return false;
             }
+
             else
             {
                 errorProvider1.SetError(textBox, string.Empty);
@@ -137,8 +148,18 @@ namespace Lab_4
         {
             try
             {
-                return Math.Round(double.Parse(input.
-                          Replace('.', ',')));
+                //return Math.Round(double.Parse(input.
+                //          Replace('.', ',')));
+
+                /// <summary>
+                /// Переменная в которую записывается
+                /// результат парсинга
+                /// </summary>               
+                var outputNumber = 0.0;
+
+                double.TryParse(input.Replace('.', ','), NumberStyles.Any,
+                    new CultureInfo("ru-RU"), out outputNumber); 
+                return Math.Round(outputNumber);
             }
             catch (FormatException)
             {
@@ -302,27 +323,19 @@ namespace Lab_4
         private void TextBoxForWage_KeyPress(object sender, KeyPressEventArgs e)
         {
             var tempBox = (MaskedTextBox)sender;
-            char ch = e.KeyChar;
-            if (ch == 46 && ((tempBox.Text.IndexOf('.') != -1) ||
-                (tempBox.Text.IndexOf(',') != -1)))
+            //TODO:RSDN(!)
+            //Передавамый символ в Control
+            char tempChar = e.KeyChar;
+            //TODO: Вынести константы (!)
+            if (tempChar == DOT && ((tempBox.Text.IndexOf('.') != -1)))
             {
                 e.Handled = true;
                 return;
             }
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if (!Char.IsDigit(tempChar) && tempChar != BACKSPACE && tempChar != DOT)
             {
                 e.Handled = true;
             }
-            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            //{
-            //    e.Handled = true;
-            //}
-
-            //// If you want, you can allow decimal (float) numbers
-            //if ((e.KeyChar == '.') && (tempBox.Text.IndexOf('.') > -1))
-            //{
-            //    e.Handled = true;
-            //}
 
             IgnoreSpaces(e);
             
