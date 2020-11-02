@@ -250,18 +250,7 @@ namespace Lab_4
         /// <param name="e"></param>
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN(!)
-            /// <summary>
-            /// Экземпляр класса для
-            /// выбора произвольных записей 
-            /// </summary>
             Random random = new Random();
-
-            /// <summary>
-            /// Экземпляр класса Person
-            /// для хранения произвольным образом
-            /// выбранной записи
-            /// </summary>
             Person newPerson = RandomData.PickPerson();
             
             var randomNumber = random.Next(1, 2);
@@ -331,7 +320,8 @@ namespace Lab_4
                 for (int i = 0; i < row.Cells.Count; i++)
                 {
                     if (row.Cells[i].Value != null &&
-                        row.Cells[i].Value.ToString().ToLower().Contains(searchQuery.ToLower()))
+                        row.Cells[i].Value.ToString()
+                            .ToLower().Contains(searchQuery.ToLower()))
                     {
                         int rowIndex = row.Index;
                         dataGridView.Rows[rowIndex].Selected = true;

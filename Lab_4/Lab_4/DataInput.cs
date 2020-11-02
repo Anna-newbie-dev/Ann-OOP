@@ -26,15 +26,7 @@ namespace Lab_4
         /// </summary>
         private readonly List<MaskedTextBox> _fullTimeTextBox;
 
-        /// <summary>
-        /// ASCII код точки
-        /// </summary>
-        private int DOT = 46;
 
-        /// <summary>
-        /// ASCII код пробела назад
-        /// </summary>
-        private int BACKSPACE = 8;
 
         /// <summary>
         /// Форма ввода данных
@@ -158,7 +150,7 @@ namespace Lab_4
                 var outputNumber = 0.0;
 
                 double.TryParse(input.Replace('.', ','), NumberStyles.Any,
-                    new CultureInfo("ru-RU"), out outputNumber); 
+                    new CultureInfo("ru-RU"), out outputNumber);
                 return Math.Round(outputNumber);
             }
             catch (FormatException)
@@ -320,25 +312,26 @@ namespace Lab_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBoxForWage_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxForWage_KeyPress(object sender, KeyPressEventArgs e) 
         {
+            const int DOT = 46;
+            const int BACKSPACE = 8;
             var tempBox = (MaskedTextBox)sender;
-            //TODO:RSDN(!)
-            //Передавамый символ в Control
             char tempChar = e.KeyChar;
-            //TODO: Вынести константы (!)
+
             if (tempChar == DOT && ((tempBox.Text.IndexOf('.') != -1)))
             {
                 e.Handled = true;
                 return;
             }
-            if (!Char.IsDigit(tempChar) && tempChar != BACKSPACE && tempChar != DOT)
+            if (!Char.IsDigit(tempChar) 
+                && tempChar != BACKSPACE 
+                && tempChar != DOT)
             {
                 e.Handled = true;
             }
 
             IgnoreSpaces(e);
-            
         }
 
         /// <summary>
@@ -353,7 +346,6 @@ namespace Lab_4
             }
         }
 
-        //TODO: XML(!)
         /// <summary>
         /// При принятии фокуса перенести каретку
         /// в начало строки
@@ -376,12 +368,12 @@ namespace Lab_4
             {
                 this.BeginInvoke((MethodInvoker)delegate ()
                 {
-                    int pos = textBox.SelectionStart;
+                    int position = textBox.SelectionStart;
 
-                    if (pos > textBox.Text.Length)
-                        pos = textBox.Text.Length;
+                    if (position > textBox.Text.Length)
+                        position = textBox.Text.Length;
 
-                    textBox.Select(pos, 0);
+                    textBox.Select(position, 0);
                 });
             }
         }
