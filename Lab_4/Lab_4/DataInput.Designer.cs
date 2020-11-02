@@ -296,13 +296,14 @@
             // HoursBox
             // 
             this.HoursBox.Location = new System.Drawing.Point(133, 30);
+            this.HoursBox.Mask = "9999";
             this.HoursBox.Name = "HoursBox";
             this.HoursBox.PromptChar = ' ';
             this.HoursBox.Size = new System.Drawing.Size(166, 22);
             this.HoursBox.TabIndex = 31;
             this.HoursBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             this.HoursBox.Enter += new System.EventHandler(this.TextBox_Enter);
-            this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxForWage_KeyPress);
+            this.HoursBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // labelHours
             // 

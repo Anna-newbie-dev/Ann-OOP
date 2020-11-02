@@ -26,8 +26,8 @@ namespace Lab_4
         /// </summary>
         private readonly List<MaskedTextBox> _fullTimeTextBox;
 
-
-
+        const int DECIMALSIGNS = 2;
+        
         /// <summary>
         /// Форма ввода данных
         /// </summary>
@@ -138,6 +138,7 @@ namespace Lab_4
         /// <returns>Преобразованное из строки число</returns>
         private double CheckInput(string input)
         {
+            
             try
             {
                 //return Math.Round(double.Parse(input.
@@ -147,7 +148,7 @@ namespace Lab_4
 
                 double.TryParse(input.Replace('.', ','), NumberStyles.Any,
                     new CultureInfo("ru-RU"), out outputNumber);
-                return Math.Round(outputNumber,2);
+                return outputNumber;
             }
             catch (FormatException)
             {
@@ -232,7 +233,8 @@ namespace Lab_4
                 }),
             };
             partTimeActions.ForEach(SetValue);
-            TotalBox.Text = partTime.CalculateWage().ToString();
+            TotalBox.Text = Math.Round(partTime.
+                CalculateWage(), DECIMALSIGNS).ToString();
         }
 
         /// <summary>
@@ -258,7 +260,8 @@ namespace Lab_4
                 }),
             };
             fullTimeActions.ForEach(SetValue);
-            TotalBox.Text = fullTime.CalculateWage().ToString();
+            TotalBox.Text = Math.Round(fullTime.
+                CalculateWage(), DECIMALSIGNS).ToString();
         }
 
         /// <summary>
@@ -310,8 +313,6 @@ namespace Lab_4
         /// <param name="e"></param>
         private void TextBoxForWage_KeyPress(object sender, KeyPressEventArgs e) 
         {
-            //const int DOT = 46;
-            //const int BACKSPACE = 8;
             var tempBox = (MaskedTextBox)sender;
             char tempChar = e.KeyChar;
 
@@ -362,39 +363,9 @@ namespace Lab_4
                     }
                 }
             }
-
-            #region OLD
-            //if (e.KeyChar == '.')
-            //{
-            //    if (tempBox.SelectionStart != tempBox.Text.Length
-            //    && e.Handled == false)
-            //    {
-            //        string afterDotString = tempBox.Text.
-            //            Substring(tempBox.SelectionStart);
-
-            //        if (afterDotString.Length > 2)
-            //        {
-            //            e.Handled = true;
-            //        }
-            //    }
-            //}
-
-            //if (tempChar == DOT && ((tempBox.Text.IndexOf('.') != -1)))
-            //{
-            //    e.Handled = true;
-            //    return;
-            //}
-            //if (!Char.IsDigit(tempChar) 
-            //    && tempChar != BACKSPACE 
-            //    && tempChar != DOT)
-            //{
-            //    e.Handled = true;
-            //}
-            #endregion
-
             IgnoreSpaces(e);
         }
-
+        
         /// <summary>
         /// Проверяет, существует
         /// ли уже точка в строке
