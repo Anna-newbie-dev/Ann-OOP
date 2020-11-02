@@ -142,16 +142,12 @@ namespace Lab_4
             {
                 //return Math.Round(double.Parse(input.
                 //          Replace('.', ',')));
-
-                /// <summary>
-                /// Переменная в которую записывается
-                /// результат парсинга
-                /// </summary>               
+              
                 var outputNumber = 0.0;
 
                 double.TryParse(input.Replace('.', ','), NumberStyles.Any,
                     new CultureInfo("ru-RU"), out outputNumber);
-                return Math.Round(outputNumber);
+                return Math.Round(outputNumber,2);
             }
             catch (FormatException)
             {
@@ -314,24 +310,111 @@ namespace Lab_4
         /// <param name="e"></param>
         private void TextBoxForWage_KeyPress(object sender, KeyPressEventArgs e) 
         {
-            const int DOT = 46;
-            const int BACKSPACE = 8;
+            //const int DOT = 46;
+            //const int BACKSPACE = 8;
             var tempBox = (MaskedTextBox)sender;
             char tempChar = e.KeyChar;
 
-            if (tempChar == DOT && ((tempBox.Text.IndexOf('.') != -1)))
-            {
-                e.Handled = true;
-                return;
-            }
-            if (!Char.IsDigit(tempChar) 
-                && tempChar != BACKSPACE 
-                && tempChar != DOT)
+            if (!char.IsControl(e.KeyChar)
+                    && !char.IsDigit(e.KeyChar)
+                    && e.KeyChar != '.' && e.KeyChar != ',')
             {
                 e.Handled = true;
             }
 
+            //check if '.' , ',' pressed
+            char separatorChar = 's';
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                // check if it's in the beginning of text not accept
+                if (tempBox.Text.Length == 0) e.Handled = true;
+                // check if it's in the beginning of text not accept
+                if (tempBox.SelectionStart == 0) e.Handled = true;
+                // check if there is already exist a '.' , ','
+                if (AlreadyExist(tempBox.Text, ref separatorChar)) e.Handled = true;
+                //check if '.' or ',' is in middle of a number and 
+                //after it is not a number greater than 99
+                if (tempBox.SelectionStart != tempBox.Text.Length && e.Handled == false)
+                {
+                    // '.' or ',' is in the middle
+                    string AfterDotString = tempBox.Text.
+                        Substring(tempBox.SelectionStart);
+
+                    if (AfterDotString.Length > 2)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+            //check if a number pressed
+            if (Char.IsDigit(e.KeyChar))
+            {
+                //check if a coma or dot exist
+                if (AlreadyExist(tempBox.Text, ref separatorChar))
+                {
+                    int sepratorPosition = tempBox.Text.IndexOf(separatorChar);
+                    string afterSepratorString = tempBox.Text
+                        .Substring(sepratorPosition + 1);
+                    if (tempBox.SelectionStart > sepratorPosition 
+                        && afterSepratorString.Length > 1)
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+
+            #region OLD
+            //if (e.KeyChar == '.')
+            //{
+            //    if (tempBox.SelectionStart != tempBox.Text.Length
+            //    && e.Handled == false)
+            //    {
+            //        string afterDotString = tempBox.Text.
+            //            Substring(tempBox.SelectionStart);
+
+            //        if (afterDotString.Length > 2)
+            //        {
+            //            e.Handled = true;
+            //        }
+            //    }
+            //}
+
+            //if (tempChar == DOT && ((tempBox.Text.IndexOf('.') != -1)))
+            //{
+            //    e.Handled = true;
+            //    return;
+            //}
+            //if (!Char.IsDigit(tempChar) 
+            //    && tempChar != BACKSPACE 
+            //    && tempChar != DOT)
+            //{
+            //    e.Handled = true;
+            //}
+            #endregion
+
             IgnoreSpaces(e);
+        }
+
+        /// <summary>
+        /// Проверяет, существует
+        /// ли уже точка в строке
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="keyChar"></param>
+        /// <returns></returns>
+        private bool AlreadyExist(string text, ref char keyChar)
+        {
+            if (text.IndexOf('.') > -1)
+            {
+                keyChar = '.';
+                return true;
+            }
+            if (text.IndexOf(',') > -1)
+            {
+                keyChar = ',';
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -448,7 +531,5 @@ namespace Lab_4
         #endregion
 
         #endregion
-
-        
     }
 }
