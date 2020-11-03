@@ -26,7 +26,7 @@ namespace Lab_4
         /// </summary>
         private readonly List<MaskedTextBox> _fullTimeTextBox;
 
-        const int DECIMALSIGNS = 2;
+        private const int DECIMALSIGNS = 2;
         
         /// <summary>
         /// Форма ввода данных
@@ -79,7 +79,23 @@ namespace Lab_4
         /// <param name="e"></param>
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
+            List<MaskedTextBox> _wageTextBox;
+            _wageTextBox = new List<MaskedTextBox>
+            {
+                RateBox,
+                SalaryBox
+            };
+            List<MaskedTextBox> textBoxListTmp = _wageTextBox;
+
             AllFieldsOk();
+
+            foreach (var textBox in textBoxListTmp)
+            {
+                var position = textBox.SelectionStart;
+                textBox.Text = textBox.Text.Replace('.', ',');
+                textBox.SelectionStart = textBox.Text.Length;
+                textBox.SelectionLength = 0;
+            }
         }
 
         /// <summary>
@@ -289,7 +305,9 @@ namespace Lab_4
         #endregion
 
         #region Всякая обработка с красотой
-           
+
+        
+
         /// <summary>
         /// Игнорирование пробелов
         /// при вводе текста
@@ -314,13 +332,13 @@ namespace Lab_4
 
             if (!char.IsControl(e.KeyChar)
                     && !char.IsDigit(e.KeyChar)
-                    && e.KeyChar != ',')
+                    && e.KeyChar != ',' && e.KeyChar != '.')
             {
                 e.Handled = true;
             }
 
             char separatorChar = 's';
-            if (e.KeyChar == ',')
+            if (e.KeyChar == ',' || e.KeyChar == '.')
             {
                 if (tempBox.Text.Length == 0 ||
                     tempBox.SelectionStart == 0 ||
@@ -372,6 +390,12 @@ namespace Lab_4
             if (text.IndexOf(',') > -1)
             {
                 keyChar = ',';
+                return true;
+            }
+
+            if (text.IndexOf('.') > -1)
+            {
+                keyChar = '.';
                 return true;
             }
             return false;
@@ -494,6 +518,7 @@ namespace Lab_4
             SalaryBox.Visible = true;
             labelSalary.Visible = true;
         }
+
 
         #endregion
 
