@@ -138,12 +138,8 @@ namespace Lab_4
         /// <returns>Преобразованное из строки число</returns>
         private double CheckInput(string input)
         {
-            
             try
             {
-                //return Math.Round(double.Parse(input.
-                //          Replace('.', ',')));
-              
                 var outputNumber = 0.0;
 
                 double.TryParse(input.Replace('.', ','), NumberStyles.Any,
@@ -318,26 +314,24 @@ namespace Lab_4
 
             if (!char.IsControl(e.KeyChar)
                     && !char.IsDigit(e.KeyChar)
-                    && e.KeyChar != '.' && e.KeyChar != ',')
+                    && e.KeyChar != ',')
             {
                 e.Handled = true;
             }
 
-            //check if '.' , ',' pressed
             char separatorChar = 's';
-            if (e.KeyChar == '.' || e.KeyChar == ',')
+            if (e.KeyChar == ',')
             {
-                // check if it's in the beginning of text not accept
-                if (tempBox.Text.Length == 0) e.Handled = true;
-                // check if it's in the beginning of text not accept
-                if (tempBox.SelectionStart == 0) e.Handled = true;
-                // check if there is already exist a '.' , ','
-                if (AlreadyExist(tempBox.Text, ref separatorChar)) e.Handled = true;
-                //check if '.' or ',' is in middle of a number and 
-                //after it is not a number greater than 99
-                if (tempBox.SelectionStart != tempBox.Text.Length && e.Handled == false)
+                if (tempBox.Text.Length == 0 ||
+                    tempBox.SelectionStart == 0 ||
+                    AlreadyExist(tempBox.Text, ref separatorChar))
                 {
-                    // '.' or ',' is in the middle
+                    e.Handled = true;
+                }
+
+                if (tempBox.SelectionStart != tempBox.Text.Length && 
+                    e.Handled == false)
+                {
                     string AfterDotString = tempBox.Text.
                         Substring(tempBox.SelectionStart);
 
@@ -347,10 +341,9 @@ namespace Lab_4
                     }
                 }
             }
-            //check if a number pressed
+
             if (Char.IsDigit(e.KeyChar))
             {
-                //check if a coma or dot exist
                 if (AlreadyExist(tempBox.Text, ref separatorChar))
                 {
                     int sepratorPosition = tempBox.Text.IndexOf(separatorChar);
@@ -363,6 +356,7 @@ namespace Lab_4
                     }
                 }
             }
+            
             IgnoreSpaces(e);
         }
         
@@ -375,11 +369,6 @@ namespace Lab_4
         /// <returns></returns>
         private bool AlreadyExist(string text, ref char keyChar)
         {
-            if (text.IndexOf('.') > -1)
-            {
-                keyChar = '.';
-                return true;
-            }
             if (text.IndexOf(',') > -1)
             {
                 keyChar = ',';
@@ -460,6 +449,13 @@ namespace Lab_4
                         control.Text = string.Empty;
                         break;
                     }
+
+                    case TextBox TextBox:
+                    {
+                         control.Text = string.Empty;
+                         break;
+                    }
+
                     case GroupBox groupBox:
                     {
                         CleanAllTextBoxesIn(groupBox);

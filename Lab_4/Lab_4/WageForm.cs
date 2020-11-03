@@ -194,7 +194,7 @@ namespace Lab_4
         {
             SearchBox.Text = "Найти";
             SearchBox.ForeColor = Color.Gray;
-            //SearchBox.Font.Italic
+            SearchBox.Font = new Font(SearchBox.Font, FontStyle.Italic);
         }
 
         /// <summary>

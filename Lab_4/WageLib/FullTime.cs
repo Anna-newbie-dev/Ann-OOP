@@ -11,9 +11,9 @@ namespace WageLib
 
         #region Constants
 
-        private int MAXSHIFTS = 8600;
-        private int MAXSALARY = 25000;
-        private int MAXRATE = 15000;
+        private const int MAXSHIFTS = 8600;
+        private const int MAXSALARY = 25000;
+        private const int MAXRATE = 15000;
 
         #endregion
 

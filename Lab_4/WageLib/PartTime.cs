@@ -8,8 +8,8 @@
     {
         #region Constants
 
-        private int MAXSHIFTS = 500;
-        private int MAXSALARY = 3500;
+		private const int MAXSHIFTS = 500;
+        private const int MAXSALARY = 3500;
 
         #endregion
 
